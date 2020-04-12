@@ -1,0 +1,39 @@
+﻿@page "{id:int?}"
+@model RazorPagesTutorial.Pages.USERS.LoginModel
+@{
+    ViewData["Title"] = "Login";
+
+}
+
+
+<div class="card-deck">
+    <div class="card-header" style="color:red;Background:white;border-style:inherit;animation:ease-in-out">
+        <h1>Login</h1>
+    </div>
+    <div class="w-25">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.LOGIN_USER.U_ID" class="control-label"></label>
+                <input asp-for="@Model.LOGIN_USER.U_ID" type="number" class="form-control" min="1" />
+                <span asp-validation-for="@Model.LOGIN_USER.U_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.LOGIN_USER.U_Pass" class="control-label"></label>
+                <input asp-for="@Model.LOGIN_USER.U_Pass" type="password" class="form-control" />
+                <span asp-validation-for="@Model.LOGIN_USER.U_Pass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <div class="card-link">
+        <a asp-page="/USERS/Register">Register</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
