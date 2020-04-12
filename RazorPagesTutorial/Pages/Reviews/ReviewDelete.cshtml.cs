@@ -53,7 +53,7 @@ namespace RazorPagesTutorial
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./ReviewTable");
         }
     }
 }
