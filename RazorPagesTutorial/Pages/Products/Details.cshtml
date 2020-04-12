@@ -1,0 +1,69 @@
+﻿@page
+@model RazorPagesTutorial.Pages.Products.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Product Details</h1>
+
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Product.P_Name</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@Model.Product.P_Image" asp-append-version="true" width="300" height="300"/>
+
+                <h4>Product ID : @Model.Product.P_ID</h4>
+                <h4>Price : @Model.Product.P_Price</h4>
+                <h4>Category : @Model.Product.P_Category</h4>
+                <h4>Description: @Model.Product.P_Description</h4>
+
+            </div>
+            <div class="card-footer text-center">
+                <a asp-page="/Products/ProductList"
+                   class="btn btn-primary">Back</a>
+                <a href="#" class="btn btn-primary">Buy</a>
+                <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewCreate" asp-route-ID="@Model.Product.P_ID">Create Review</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-deck">
+    @foreach (var review in Model.validReviews)
+    {
+
+        <div class="card m-3" style="min-width : 18rem; max-width:30.5%;">
+            <div class=" card-header">
+                <h3>User:@review.R_UID - @review.R_Title - Star:@review.R_Star</h3>
+            </div>
+
+            <div class=" card-body">
+                <h3>@review.R_Content</h3>
+            </div>
+            <div class="card-footer text-center">
+
+                <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewEdit" asp-route-ID="@review.R_ID">Edit</a>
+                <a class="btn btn-large btn-danger" asp-page="/Reviews/ReviewDelete" asp-route-ID="@review.R_ID">Delete</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+@*
+    <div>
+        <a asp-page="./Edit" asp-route-id="@selectedItem.ID">Edit</a> |
+        <a asp-page="./Products/ProductList">Back to List</a>
+    </div>
+
+*@
+
+

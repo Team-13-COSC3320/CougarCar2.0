@@ -1,0 +1,50 @@
+﻿@page
+@model RazorPagesTutorial.ReviewCreateModel
+@{
+    ViewData["Title"] = "ReviewCreate";
+}
+
+<h1>Create Review</h1>
+
+<h4>Review</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h2>@Model.Product.P_Name</h2>
+            <div class="form-group">
+                <label asp-for="Review.R_Title" class="control-label"></label>
+                <input asp-for="Review.R_Title" class="form-control" />
+                <span asp-validation-for="Review.R_Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Review.R_Star" class="control-label"></label>
+                <input asp-for="Review.R_Star" class="form-control" />
+                <span asp-validation-for="Review.R_Star" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Review.R_Content" class="control-label"></label>
+                <input asp-for="Review.R_Content" class="form-control" />
+                <span asp-validation-for="Review.R_Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Review.R_UID" class="control-label"></label>
+                <input asp-for="Review.R_UID" class="form-control" />
+                <span asp-validation-for="Review.R_UID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div> @*Depending on the user, need to change where this goes*@
+    <a asp-page="/Reviews/ReviewTable">Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

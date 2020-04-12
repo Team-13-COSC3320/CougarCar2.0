@@ -1,0 +1,60 @@
+﻿@page
+@model RazorPagesTutorial.Pages.Products.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Product.P_Name" class="control-label"></label>
+                <input asp-for="Product.P_Name" class="form-control" />
+                <span asp-validation-for="Product.P_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.P_Category" class="control-label"></label>
+                <select asp-for="Product.P_Category" class="form-control">
+                    <option>Cat1</option>
+                    <option>Cat2</option>
+                    <option>Cat3</option>
+                    <option>Cat4</option>
+                    <option>Cat5</option>
+                </select>
+                <span asp-validation-for="Product.P_Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.P_Image" class="control-label"></label>
+                <input type="file" asp-for="Upload" class="form-control" />
+                <span asp-validation-for="Product.P_Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.P_Price" class="control-label"></label>
+                <input asp-for="Product.P_Price" class="form-control" />
+                <span asp-validation-for="Product.P_Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.P_Description" class="control-label"></label>
+                <input asp-for="Product.P_Description" class="form-control" />
+                <span asp-validation-for="Product.P_Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,76 @@
+﻿@page
+@model RazorPagesTutorial.Pages.Products.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div id="Create">
+    <a class ="btn btn-large btn-info" href="Products/Create">Create</a>
+</div>
+
+@*<div id="Details">
+    <a class="btn btn-large btn-info" href="Products/Details">Product Details</a>
+</div>*@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].P_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].P_Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].P_Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].P_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].P_Description)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                <div id="Update">
+                    <a class="btn btn-large btn-info" asp-page="/Products/Edit" asp-route-ID="@item.P_ID">Edit</a>
+                </div>
+                <div id="Details">
+                    <a class="btn btn-large btn-info" asp-page="/Products/Details" asp-route-ID="@item.P_ID">Details</a>
+                </div>
+                <div id="Delete">
+                    <a class="btn btn-large btn-danger" asp-page="/Products/Delete" asp-route-ID="@item.P_ID">Delete</a>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P_Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P_Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P_Description)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
