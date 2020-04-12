@@ -27,7 +27,8 @@
             <div class="card-footer text-center">
                 <a asp-page="/Products/ProductList"
                    class="btn btn-primary">Back</a>
-                <a href="#" class="btn btn-primary">Buy</a>
+                <a asp-page="/Orders/OrderCreate"
+                   class="btn btn-primary">Buy</a>
                 <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewCreate" asp-route-ID="@Model.Product.P_ID">Create Review</a>
             </div>
         </div>

@@ -16,8 +16,9 @@ namespace RazorPagesTutorial.Models
         [ForeignKey("Product")]
         public Int32? O_UID { get; set; }
         public Int32? O_PIDS { get; set; }
-        public Int32? O_Amount { get; set; }
-        public String O_Status { get; set; }
+        //public Int32? O_Amount { get; set; } don't need order amount anymore either
+        //since no shopping cart, people will only buy one at a time
+        public String O_Status { get; set; } //Processing, and Ready
 
     }
 }
