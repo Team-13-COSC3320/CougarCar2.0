@@ -1,0 +1,17 @@
+﻿@page
+@model RazorPagesTutorial.Pages.USERS.RegisterSucceedModel
+@{
+    ViewData["Title"] = "RegisterSucceed";
+}
+
+<h1>Register Succeed</h1>
+<h2>Your Login ID is @Model.Msg</h2>
+<div>
+    <a asp-page="../USERS/CustomerAccountMm" asp-route-id="@Model.USERS.U_ID">To account management</a>
+<div>
+    <a asp-page="../Products/Products" asp-route-id="@Model.USERS.U_ID">To car List</a>
+</div>
+<div>
+    <a asp-page="../Index">Logout</a>
+</div>
+
