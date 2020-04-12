@@ -20,8 +20,7 @@ namespace RazorPagesTutorial.Models
         public string? P_Image { get; set; }
         public int? P_Price { get; set; }
         public string? P_Description { get; set; }
-
-        public int P_Amount { get; set; }
+        public int? P_Amount { get; set; }
 
         //public bool P_Status{ get; set; }
 

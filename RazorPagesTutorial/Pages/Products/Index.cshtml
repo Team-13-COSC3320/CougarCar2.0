@@ -37,7 +37,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].P_Description)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].P_Amount)
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -69,6 +72,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.P_Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P_Amount)
             </td>
         </tr>
 }

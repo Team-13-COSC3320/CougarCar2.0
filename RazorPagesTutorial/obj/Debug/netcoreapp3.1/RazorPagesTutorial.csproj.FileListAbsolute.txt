@@ -731,10 +731,7 @@ C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreap
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.TagHelpers.input.cache
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.TagHelpers.output.cache
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.RazorCoreGenerate.cache
-C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Error.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
-C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Index1.cshtml.g.cs
-C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Privacy.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Products\Create.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Products\Delete.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Products\Details.cshtml.g.cs
@@ -747,7 +744,6 @@ C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreap
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Reviews\ReviewTable.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_Layout.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\UploadImage.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewStart.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.RazorTargetAssemblyInfo.cache
@@ -1089,3 +1085,4 @@ C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreap
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Orders\OrderCreate.cshtml.g.cs
