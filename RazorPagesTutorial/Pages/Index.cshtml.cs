@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,8 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using RazorPagesTutorial.Data;
+using Microsoft.AspNetCore.Http;
 
-namespace RazorPagesTutorial.Pages
+namespace RazorPagesTutorial
 {
     public class IndexModel : PageModel
     {
@@ -24,6 +27,15 @@ namespace RazorPagesTutorial.Pages
         public void OnGet()
         {
             User_id = _context.Userid;
+            if(HttpContext.Session.Get("Id")!= null)
+            {
+                Console.SetOut(new DebugTextWriter());
+                Console.WriteLine();
+                byte[] str = HttpContext.Session.Get("Id");
+                string id = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["Userid"] = id;
+            }
+            
         }
 
     }

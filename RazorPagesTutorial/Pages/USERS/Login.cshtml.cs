@@ -6,6 +6,7 @@ using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using RazorPagesTutorial.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace RazorPagesTutorial.Pages.USERS
 {
@@ -65,6 +66,7 @@ namespace RazorPagesTutorial.Pages.USERS
                         LOGIN_USER.U_Pass = USERS[i].U_Pass;
                         LOGIN_USER.U_Role = USERS[i].U_Role;
                         //Start redirect user by ROLE
+                        HttpContext.Session.SetString("Id",LOGIN_USER.U_ID.ToString());
                         if (USERS[i].U_Role.Contains("Customer"))
                         {
                             url = "../USERS/CustomerAccountMm?id=" + LOGIN_USER.U_ID.ToString();
