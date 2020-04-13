@@ -16,11 +16,11 @@ namespace RazorPagesTutorial.Data
         }
 
         public DbSet<RazorPagesTutorial.Models.Product> Product { get; set; }
-
         public DbSet<RazorPagesTutorial.Models.Orders> Orders { get; set; }
         public DbSet<RazorPagesTutorial.Models.USER> USERS { get; set; }
         public DbSet<RazorPagesTutorial.Models.LoginUSER> LoginUSER { get; set; }
         public DbSet<Review> Review {get; set;}
+        public int Userid { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-body text-center">
-                <img class="card-img-top" src="@Model.Product.P_Image" onerror="this.onerror = null; this.src='/Images/no-image.jpg'" asp-append-version="true" width="300" height="300"/>
+                <img class="card-img-top" src="/Images/@Model.Product.P_Image" onerror="this.onerror = null; this.src='/Images/no-image.jpg'" asp-append-version="true" width="300" height="300"/>
 
                 <h4>Product ID : @Model.Product.P_ID</h4>
                 <h4>Price : @Model.Product.P_Price</h4>

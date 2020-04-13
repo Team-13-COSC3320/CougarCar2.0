@@ -5,85 +5,94 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Welcome to Admin WebTool</h1>
-<a style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" asp-page="../Index">Logout</a>
-<p>
-    <a asp-page="Create">Create New User</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_Pass)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_FName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_LName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_Zipcode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USERS[0].U_Role)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.USERS)
-        {
-            if (!item.U_Role.Contains("Master"))
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_Pass)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_FName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_LName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_Country)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_Zipcode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.U_Role)
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.U_ID">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.U_ID">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.U_ID">Delete</a>
-                    </td>
-                </tr>
-            }
+<h1 style="color:red; font-family:'Century Gothic'">Welcome @Model.USERS[Model.currentID].U_LName to Admin WebTool</h1>
 
-        }
-    </tbody>
-</table>
+<div class="clearfix">
+    <a type="button" class="btn btn-secondary float-left" asp-page="Create">Create New User</a>
+    <a type="button" class="btn btn-secondary float-right" asp-page="../Index">Logout</a>
+</div>
+<body class="flex-wrap">
+    <table class="table table-hover">
+        <thead class=" bg-primary border shadow-sm">
+            <tr>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_ID)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_Pass)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_FName)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_LName)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_Address)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_Country)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_Zipcode)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_Phone)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_Email)
+                </th>
+                <th scope="col" style="color:white">
+                    @Html.DisplayNameFor(model => model.USERS[0].U_Role)
+                </th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="bg-info align-content-center flex-row border">
+            @foreach (var item in Model.USERS)
+            {
+                if (!item.U_Role.Contains("Master"))
+                {
+                    <tr class="border-top">
+                        <td scope="row">
+                            @Html.DisplayFor(modelItem => item.U_ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_Pass)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_FName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_LName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_Country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_Zipcode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.U_Role)
+                        </td>
+                        <td class="d-flex flex-row bd-highlight mb-3">
+                            <a class="p-2 bd-highlight" asp-page="./Edit" asp-route-id="@item.U_ID">Edit   </a>
+                            <a class="p-2 bd-highlight" asp-page="./Details" asp-route-id="@item.U_ID">Details</a>
+                            <a class="p-2 bd-highlight" asp-page="./Delete" asp-route-id="@item.U_ID">Delete </a>
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</body>

@@ -30,16 +30,14 @@ namespace RazorPagesTutorial.Pages.Products
         public Product Product { get; set; }
         [BindProperty]
         public IFormFile Upload { get; set; }
+        [BindProperty]
+        public int Id { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+            Console.SetOut(new DebugTextWriter());
             Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == id);
-
+            Id = id;
             if (Product == null)
             {
                 return NotFound();
@@ -53,28 +51,22 @@ namespace RazorPagesTutorial.Pages.Products
         {
             if (!ModelState.IsValid)
             {
-
                 return Page();
             }
             if (ModelState.IsValid)
             {
-                if(Upload != null)
+                if (Upload != null)
                 {
-                DateTime currentTime = DateTime.Now;
-                string h = currentTime.Hour.ToString();
-                string m = currentTime.Minute.ToString();
-                string s = currentTime.Second.ToString();
-                string time = "-" + currentTime.ToString("d", CultureInfo.CreateSpecificCulture("de-DE"));
-                string hms = "-" + h + "-" + m + "-" + s + "-";
-                var fileName = Path.GetFileNameWithoutExtension(Upload.FileName) + time + hms + Path.GetExtension(Upload.FileName);
-                var file = Path.Combine(_environment.WebRootPath, "Images", fileName);
 
-                using (var fileStream = new FileStream(file, FileMode.Create))
-                {
-                    await Upload.CopyToAsync(fileStream);
-                }
+                    var fileName = Product.P_ID.ToString() + Path.GetExtension(Upload.FileName);
+                    var file = Path.Combine(_environment.WebRootPath, "Images", fileName);
 
-                Product.P_Image = "/Images/" + Path.GetFileName(fileName);
+                    using (var fileStream = new FileStream(file, FileMode.Create))
+                    {
+                        await Upload.CopyToAsync(fileStream);
+                    }
+
+                    Product.P_Image = Path.GetFileName(fileName);
                 }
                 
             }
@@ -95,9 +87,6 @@ namespace RazorPagesTutorial.Pages.Products
                     throw;
                 }
             }
-
-            
-
             return RedirectToPage("./Index");
         }
 

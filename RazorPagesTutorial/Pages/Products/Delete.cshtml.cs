@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace RazorPagesTutorial.Pages.Products
 {
     public class DeleteModel : PageModel
     {
-        private readonly RazorPagesTutorial.Data.RazorPagesTutorialContext _context;
-
-        public DeleteModel(RazorPagesTutorial.Data.RazorPagesTutorialContext context)
+        private readonly RazorPagesTutorialContext _context;
+        private IWebHostEnvironment _environment;
+        public DeleteModel(RazorPagesTutorialContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         [BindProperty]
@@ -43,6 +46,14 @@ namespace RazorPagesTutorial.Pages.Products
             if (id == null)
             {
                 return NotFound();
+            }
+
+            List<Product> list = _context.Product.ToList();
+            var test = list.Last();
+            string removing = _environment.WebRootPath.ToString() + "/Images/" + test.P_Image;
+            if (System.IO.File.Exists(removing))
+            {
+                System.IO.File.Delete(removing);
             }
 
             Product = await _context.Product.FindAsync(id);

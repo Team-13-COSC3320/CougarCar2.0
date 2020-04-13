@@ -945,8 +945,6 @@ C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreap
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\USERS\Logout.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\USERS\Register.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\USERS\RegisterSucceed.cshtml.g.cs
-C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.csproj.CoreCompileInputs.cache
-C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\EntityFramework.dll
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
@@ -1086,3 +1084,6 @@ C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreap
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Orders\OrderCreate.cshtml.g.cs
+C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Debug.dll
+C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.csproj.CoreCompileInputs.cache
+C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.MvcApplicationPartsAssemblyInfo.cache

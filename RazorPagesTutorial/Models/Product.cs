@@ -11,7 +11,7 @@ namespace RazorPagesTutorial.Models
     {
         public enum Product_Category
         {
-            Cat1, Cat2, Cate3, Cat4, Cat5
+            Cat1, Cat2, Cat3, Cat4, Cat5
         }
         [Key]
         public int P_ID { get; set; }

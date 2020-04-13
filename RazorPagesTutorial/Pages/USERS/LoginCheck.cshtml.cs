@@ -70,6 +70,7 @@ namespace RazorPagesTutorial.Pages.USERS
             {
                 if (USER.U_Pass.Contains(Password))
                 {
+                    _context.Userid = ID;
                     if (USER.U_Role.Contains("Customer"))
                     {
                         Msg = "Customer cannot login as Admin";

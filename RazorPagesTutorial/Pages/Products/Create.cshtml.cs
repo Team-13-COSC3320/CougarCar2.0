@@ -44,30 +44,27 @@ namespace RazorPagesTutorial.Pages.Products
             {
                 return Page();
             }
-            if (ModelState.IsValid)
-            {
-                if (Upload != null)
-                {
-                    DateTime currentTime = DateTime.Now;
-                    string h = currentTime.Hour.ToString();
-                    string m = currentTime.Minute.ToString();
-                    string s = currentTime.Second.ToString();
-                    string time = "-" + currentTime.ToString("d", CultureInfo.CreateSpecificCulture("de-DE"));
-                    string hms = "-" + h + "-" + m + "-" + s + "-";
-                    var fileName = Path.GetFileNameWithoutExtension(Upload.FileName) + time + hms + Path.GetExtension(Upload.FileName);
-                    var file = Path.Combine(_environment.WebRootPath, "Images", fileName);
 
-                    using (var fileStream = new FileStream(file, FileMode.Create))
-                    {
-                        await Upload.CopyToAsync(fileStream);
-                    }
-
-                    Product.P_Image = "/Images/" + Path.GetFileName(fileName);
-                }
-
-            }
 
             _context.Product.Add(Product);
+            await _context.SaveChangesAsync();
+            List<Product> list = _context.Product.ToList();
+
+            var test = list.Last();
+            Console.SetOut(new DebugTextWriter());
+            if (Upload != null)
+            {
+                var fileName = test.P_ID.ToString() + Path.GetExtension(Upload.FileName);
+                var file = Path.Combine(_environment.WebRootPath, "Images", fileName);
+
+                using (var fileStream = new FileStream(file, FileMode.Create))
+                {
+                    await Upload.CopyToAsync(fileStream);
+                }
+
+                _context.Product.Find(test.P_ID).P_Image = Path.GetFileName(fileName);
+            }
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5e88Lq/WnRq44GfdOoZdiVFGEdc87nuwbPmWm6jOyZwtLE21z3PpC/UKvD/8ydkNVlXTl6lirc/eBtrAMczz5A==",
+  "dgSpecHash": "2Agm2GpR9V4PqEVMQfwhOrDyEQjUwS1zk0GuUETtBlPQMzqiS9kN18kat9IwZ7cuxwX0+VLhht+iBj3dgSpxLA==",
   "success": true,
   "projectFilePath": "C:\\Users\\qs\\Documents\\GitHub\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
   "expectedPackageFiles": [
@@ -44,6 +44,7 @@
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.1\\microsoft.extensions.dependencymodel.3.1.1.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.extensions.logging\\3.1.3\\microsoft.extensions.logging.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.3\\microsoft.extensions.logging.abstractions.3.1.3.nupkg.sha512",
+    "C:\\Users\\qs\\.nuget\\packages\\microsoft.extensions.logging.debug\\3.1.3\\microsoft.extensions.logging.debug.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.extensions.options\\3.1.3\\microsoft.extensions.options.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.3\\microsoft.extensions.primitives.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.identity.client\\3.0.8\\microsoft.identity.client.3.0.8.nupkg.sha512",
