@@ -14,9 +14,8 @@ namespace RazorPagesTutorial
 {
     public class IndexModel : PageModel
     {
-        public readonly RazorPagesTutorial.Data.RazorPagesTutorialContext _context;
+        public readonly RazorPagesTutorialContext _context;
         private readonly ILogger<IndexModel> _logger;
-        public int User_id;
 
         public IndexModel(ILogger<IndexModel> logger, RazorPagesTutorialContext context)
         {
@@ -26,16 +25,18 @@ namespace RazorPagesTutorial
 
         public void OnGet()
         {
-            User_id = _context.Userid;
-            if(HttpContext.Session.Get("Id")!= null)
+            if (HttpContext.Session.Get("Id") != null)
             {
-                Console.SetOut(new DebugTextWriter());
-                Console.WriteLine();
                 byte[] str = HttpContext.Session.Get("Id");
-                string id = Encoding.UTF8.GetString(str, 0, str.Length);
-                ViewData["Userid"] = id;
+                string ID = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["Userid"] = ID;
             }
-            
+            if (HttpContext.Session.Get("Role") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Role");
+                string Role = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["UserRole"] = Role;
+            }
         }
 
     }

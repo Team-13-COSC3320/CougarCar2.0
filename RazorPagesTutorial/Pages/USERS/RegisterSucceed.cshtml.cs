@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
+using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace RazorPagesTutorial.Pages.USERS
 {
@@ -26,6 +28,18 @@ namespace RazorPagesTutorial.Pages.USERS
             if (id == null)
             {
                 return NotFound();
+            }
+            if (HttpContext.Session.Get("Id") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Id");
+                string ID = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["Userid"] = ID;
+            }
+            if (HttpContext.Session.Get("Role") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Role");
+                string Role = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["UserRole"] = Role;
             }
 
             USERS = await _context.USERS.FirstOrDefaultAsync(m => m.U_ID == id);

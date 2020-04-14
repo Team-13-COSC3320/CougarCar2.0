@@ -9,14 +9,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
+using RazorPagesTutorial.Data;
+using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace RazorPagesTutorial
 {
     public class ReviewEditModel : PageModel
     {
-        private readonly RazorPagesTutorial.Data.RazorPagesTutorialContext _context;
+        private readonly RazorPagesTutorialContext _context;
 
-        public ReviewEditModel(RazorPagesTutorial.Data.RazorPagesTutorialContext context)
+        public ReviewEditModel(RazorPagesTutorialContext context)
         {
             _context = context;
         }
@@ -32,7 +35,18 @@ namespace RazorPagesTutorial
             {
                 return NotFound();
             }
-
+            if (HttpContext.Session.Get("Id") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Id");
+                string ID = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["Userid"] = ID;
+            }
+            if (HttpContext.Session.Get("Role") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Role");
+                string Role = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["UserRole"] = Role;
+            }
             Review = await _context.Review.FirstOrDefaultAsync(m => m.R_ID == id);
             Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == Review.ID);
 

@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
-
+using Microsoft.AspNetCore.Http;
+using System.Text;
 namespace RazorPagesTutorial.Pages.USERS
 {
     public class DetailsModel2 : PageModel

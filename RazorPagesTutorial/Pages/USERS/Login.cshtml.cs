@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -67,6 +69,8 @@ namespace RazorPagesTutorial.Pages.USERS
                         LOGIN_USER.U_Role = USERS[i].U_Role;
                         //Start redirect user by ROLE
                         HttpContext.Session.SetString("Id",LOGIN_USER.U_ID.ToString());
+                        HttpContext.Session.SetString("Role", LOGIN_USER.U_Role.ToString());     
+
                         if (USERS[i].U_Role.Contains("Customer"))
                         {
                             url = "../USERS/CustomerAccountMm?id=" + LOGIN_USER.U_ID.ToString();

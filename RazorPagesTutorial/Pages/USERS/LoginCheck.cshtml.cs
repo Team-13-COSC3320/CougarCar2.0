@@ -46,7 +46,6 @@ namespace RazorPagesTutorial.Pages.USERS
                     return Page();
                 }
             }*/
-
             ID = int.Parse(Request.Form["ID"]);
             Password = Request.Form["Pass"];
 

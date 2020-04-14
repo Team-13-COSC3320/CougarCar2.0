@@ -57,11 +57,18 @@
                 <input asp-for="USERS.U_Email" class="form-control" />
                 <span asp-validation-for="USERS.U_Email" class="text-danger"></span>
             </div>
+
+            @if (ViewData["UserRole"] != null)
+            {
+                @if (ViewData["UserRole"].Equals("Master") || ViewData["UserRole"].Equals("Admin"))
+                {
             <div class="form-group">
                 <label asp-for="USERS.U_Role" class="control-label"></label>
                 <input asp-for="USERS.U_Role" class="form-control" readonly />
                 <span asp-validation-for="USERS.U_Role" class="text-danger"></span>
             </div>
+                }
+            }
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

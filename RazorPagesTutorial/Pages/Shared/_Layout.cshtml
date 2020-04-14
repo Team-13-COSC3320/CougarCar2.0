@@ -11,31 +11,49 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesTutorial</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Team13</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Products/Index">Products</a>
-                        </li>
                         <li class=" nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Products/ProductList">ProductShowCase</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Products/ProductList">Products</a>
                         </li>
-                        <li class=" nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Reviews/ReviewTable">Review Table</a>
-                        </li>
-                        <li class=" nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Orders/OrderTable">Order Table</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/USERS/Login">Login</a>
-                        </li>
+
+                        @if (ViewData["UserId"] != null)
+                        {
+                            if (ViewData["UserRole"].ToString().Contains("Master") || ViewData["UserRole"].ToString().Contains("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Products/Index">Products</a>
+                                </li>
+                                <li class=" nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Reviews/ReviewTable">Review Table</a>
+                                </li>
+                                <li class=" nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Orders/OrderTable">Order Table</a>
+                                </li>
+                            }
+                            if (ViewData["UserRole"].ToString().Contains("Customer"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/USERS/CustomerAccountMm">Account Info</a>
+                                </li>
+                            }
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/USERS/Logout">Logout</a>
+                            </li>
+                        }
+                        @if (ViewData["UserId"] == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/USERS/Login">Login</a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
@@ -52,10 +70,6 @@
             &copy; 2020 - RazorPagesTutorial - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
