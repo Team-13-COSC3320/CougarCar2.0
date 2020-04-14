@@ -28,8 +28,18 @@
             <div class="card-footer text-center">
                 <a asp-page="/Products/ProductList"
                    class="btn btn-primary">Back</a>
-                <a asp-page="/Orders/OrderCreate"
-                   class="btn btn-primary">Buy</a>
+                @if (ViewData["UserId"] != null)
+                {
+                    <a asp-page="/Orders/OrderCreate" asp-route-ID="@Model.Product.P_ID"
+                       class="btn btn-primary">Buy</a>
+                }
+
+                @if (ViewData["UserId"] == null)
+                {
+                    <a asp-page="/USERS/Login"
+                       class="btn btn-primary">Buy</a>
+                }
+
                 <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewCreate" asp-route-ID="@Model.Product.P_ID">Create Review</a>
             </div>
         </div>

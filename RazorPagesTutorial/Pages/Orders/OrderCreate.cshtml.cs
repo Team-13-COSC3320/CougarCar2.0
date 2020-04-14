@@ -20,7 +20,7 @@ namespace RazorPagesTutorial
             _context = context;
         }
 
-        public Orders Order { get; set; }
+        public Orders Order;
 
         
 
@@ -45,12 +45,24 @@ namespace RazorPagesTutorial
                 ViewData["UserRole"] = Role;
             }
             Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == id);
+            Order = new Orders();
+            Order.O_Status = "Processing";
+            Order.O_Date = DateTime.Now;
+            Order.O_UID = int.Parse(ViewData["UserId"].ToString());
+            Order.O_PIDS = Product.P_ID;
+            Product.P_Amount--;
+
+
+
+            _context.Orders.Add(Order);
+            await _context.SaveChangesAsync();
 
             if (Product == null)
             {
                 return NotFound();
             }
-            return Page();
+
+            return RedirectToPage("Index");
         }
 
 
