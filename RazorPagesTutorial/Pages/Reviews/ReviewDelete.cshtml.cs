@@ -24,6 +24,9 @@ namespace RazorPagesTutorial
         }
 
         public Review Review{ get; set; }
+
+        public Product Product { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -43,7 +46,7 @@ namespace RazorPagesTutorial
                 ViewData["UserRole"] = Role;
             }
             Review = await _context.Review.FirstOrDefaultAsync(m => m.R_ID == id);
-
+            Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == Review.ID);
             if (Review == null)
             {
                 return NotFound();

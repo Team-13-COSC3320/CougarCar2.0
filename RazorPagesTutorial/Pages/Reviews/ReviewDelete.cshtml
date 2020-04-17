@@ -42,7 +42,15 @@
     <form method="post">
         <input type="hidden" asp-for="Review.R_ID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./ReviewTable">Back to List</a>
+        @if (ViewData["UserRole"].ToString() == "Admin")
+        {
+            <a asp-page="/Reviews/ReviewTable">Back</a>
+        }
+        else
+        {
+            <a asp-page="/Products/Details" asp-route-ID="@Model.Product.P_ID"
+               class="btn btn-primary m-1">Back</a>
+        }
     </form>
 </div>
 

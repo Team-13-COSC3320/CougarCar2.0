@@ -38,7 +38,15 @@
 </div>
 
 <div>
-    <a asp-page="./ReviewTable">Back to List</a>
+    @if (ViewData["UserRole"].ToString() == "Admin")
+    {
+        <a asp-page="/Reviews/ReviewTable">Back</a>
+    }
+    else
+    {
+        <a asp-page="/Products/Details" asp-route-ID="@Model.Product.P_ID"
+           class="btn btn-primary m-1">Back</a>
+    }
 </div>
 
 @section Scripts {

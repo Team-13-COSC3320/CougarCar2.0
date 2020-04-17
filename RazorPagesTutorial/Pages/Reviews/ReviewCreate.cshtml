@@ -28,11 +28,11 @@
                 <input asp-for="Review.R_Content" class="form-control" />
                 <span asp-validation-for="Review.R_Content" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Review.R_UID" class="control-label"></label>
                 <input asp-for="Review.R_UID" class="form-control" />
                 <span asp-validation-for="Review.R_UID" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -41,8 +41,17 @@
     </div>
 </div>
 
-<div> @*Depending on the user, need to change where this goes*@
-    <a asp-page="/Reviews/ReviewTable">Back</a>
+<div>
+    @*Depending on the user, need to change where this goes*@
+    @if (ViewData["UserRole"].ToString() == "Admin")
+    {
+        <a asp-page="/Reviews/ReviewTable">Back</a>
+    }
+    else
+    {
+        <a asp-page="/Products/Details" asp-route-ID="@Model.Product.P_ID"
+             class="btn btn-primary m-1">Back</a>
+    }
 </div>
 
 @section Scripts {

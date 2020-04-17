@@ -24,7 +24,7 @@ namespace RazorPagesTutorial
             _context = context;
         }
 
-      
+        public USER CurrentUser { get; set; }
 
         [BindProperty]
         public Review Review { get; set; }
@@ -47,6 +47,7 @@ namespace RazorPagesTutorial
                 byte[] str = HttpContext.Session.Get("Id");
                 string ID = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["Userid"] = ID;
+                //Console.Out.Write(ViewData["Userid"]);
             }
             if (HttpContext.Session.Get("Role") != null)
             {
@@ -55,6 +56,7 @@ namespace RazorPagesTutorial
                 ViewData["UserRole"] = Role;
             }
 
+            //Console.Out.Write(ViewData["Userid"]);
             Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == id);
 
             if (Product == null)
@@ -67,39 +69,30 @@ namespace RazorPagesTutorial
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            if (HttpContext.Session.Get("Id") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Id");
+                string ID = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["Userid"] = ID;
+                //Console.Out.Write(ViewData["Userid"]);
+            }
             if (id == null)
             {
                 return NotFound();
             }
-
+            
             Product = await _context.Product.FindAsync(id);
             var rid = Review.R_ID;
             var pid = Product.P_ID;
             var content = Review.R_Content;
             var title = Review.R_Title;
             var star = Review.R_Star;
-            var userid = Review.R_UID;
-
-            //_context.Review.FromSqlInterpolated(
-            //     $"USE [DB_A573D4_team13] GO " +
-            //     $"DECLARE	@return_value int " +
-            //     $"EXEC	@return_value = [dbo].[ReviewMasterInsertUpdateDelete] " +
-            //     $"@R_ID = {rid}, " +
-            //     $"@R_UID = {userid}, " +
-            //     $"@R_TITLE = N'{title}', " +
-            //     $"@R_CONTENT = N'{content}', " +
-            //     $"@R_STAR = {star}, " +
-            //     $"@StatementType = N'Insert', " +
-            //     $"@ID = {pid} "
-            //     +
-            //     $"SELECT 'Return Value' = @return_value "
-            //     +
-            //     $"GO "
-            //    );
-            // $"USE [DB_A573D4_team13] GO DECLARE	@return_value int EXEC	@return_value = [dbo].[ReviewMasterInsertUpdateDelete] @R_ID = {rid}, @R_UID = {userid}, @R_TITLE = N'{title}', @R_CONTENT = N'{content}', @R_STAR = {star}, @StatementType = N'Insert', @ID = {pid} SELECT 'Return Value' = @return_value GO");
-            //_context.Review.FromSqlRaw(
-            //    "ReviewMasterInsertUpdateDelete @p1,@p2,@p3,@p4,@p5,@p6,@p7", rid, userid, title, content, star, "Insert", pid);
-
+            var userid = ViewData["Userid"];
+            Console.Out.Write(ViewData["Userid"]);
+            //(int)ViewData["Userid"];
+            //if ((ViewData["Userid"] == null)){
+            //    return RedirectToPage("/Products/ProductList");
+            //}
             string connection = "Data Source=sql5053.site4now.net;User ID=DB_A573D4_team13_admin;Password=Team13shop;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
             SqlConnection sqlConnection = new SqlConnection(connection);
@@ -111,7 +104,8 @@ namespace RazorPagesTutorial
                         "VALUES(@R_UID, @R_Title, @R_Content, @R_Star, @ID)";
 
             SqlCommand cmd = new SqlCommand(query, sqlConnection);
-            cmd.Parameters.Add("@R_UID", SqlDbType.Int).Value = userid;
+            cmd.Parameters.Add("@R_UID", SqlDbType.Int ); //ViewData["Userid"]
+            cmd.Parameters["@R_UID"].Value = Int32.Parse(userid.ToString());
 
             cmd.Parameters.Add("@R_Title", SqlDbType.Char).Value = title;
 
@@ -128,8 +122,18 @@ namespace RazorPagesTutorial
 
             await _context.SaveChangesAsync();
             
-
-            return RedirectToPage("./ReviewTable");
+            //If admin do this
+            if((String)ViewData["UserRole"] == "Admin")
+            {
+                return RedirectToPage("./ReviewTable");
+            }
+            else //If not admin
+            {
+                return RedirectToPage("/Products/ProductList");
+            }
+            
+            
+            
         }
 
     }
