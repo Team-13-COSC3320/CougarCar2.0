@@ -12,8 +12,8 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <h2>@Model.Product.P_Name</h2>
-            <input type="hidden" asp-for="Review.ID" />
+            <h2>Review for @Model.Product.P_Name</h2>
+            <input type="hidden" asp-for="Review.R_ID" />
             <div class="form-group">
                 <label asp-for="Review.R_Title" class="control-label"></label>
                 <input asp-for="Review.R_Title" class="form-control" />

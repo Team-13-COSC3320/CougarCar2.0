@@ -69,7 +69,15 @@ namespace RazorPagesTutorial
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./ReviewTable");
+            //If admin do this
+            if ((String)ViewData["UserRole"] == "Admin")
+            {
+                return RedirectToPage("./ReviewTable");
+            }
+            else //If not admin
+            {
+                return RedirectToPage("/Products/ProductList");
+            }
         }
     }
 }

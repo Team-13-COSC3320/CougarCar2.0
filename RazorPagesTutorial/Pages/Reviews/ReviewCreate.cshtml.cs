@@ -76,6 +76,12 @@ namespace RazorPagesTutorial
                 ViewData["Userid"] = ID;
                 //Console.Out.Write(ViewData["Userid"]);
             }
+            if (HttpContext.Session.Get("Role") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Role");
+                string Role = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["UserRole"] = Role;
+            }
             if (id == null)
             {
                 return NotFound();
@@ -88,7 +94,7 @@ namespace RazorPagesTutorial
             var title = Review.R_Title;
             var star = Review.R_Star;
             var userid = ViewData["Userid"];
-            Console.Out.Write(ViewData["Userid"]);
+            //Console.Out.Write(ViewData["Userid"]);
             //(int)ViewData["Userid"];
             //if ((ViewData["Userid"] == null)){
             //    return RedirectToPage("/Products/ProductList");
@@ -123,7 +129,7 @@ namespace RazorPagesTutorial
             await _context.SaveChangesAsync();
             
             //If admin do this
-            if((String)ViewData["UserRole"] == "Admin")
+            if(ViewData["UserRole"].ToString().Contains("Master") || ViewData["UserRole"].ToString().Contains("Admin"))
             {
                 return RedirectToPage("./ReviewTable");
             }
