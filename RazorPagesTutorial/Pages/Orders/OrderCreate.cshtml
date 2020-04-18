@@ -5,3 +5,37 @@
 }
 
 <h1>Buy</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<h2>@Model.Order.O_ID</h2>*@
+            @*<input type="hidden" asp-for="Order.O_ID" />*@
+
+            <h3>@Model.Order.O_Status</h3>
+
+
+            <h3>Date: @Model.Order.O_Date</h3>
+
+            <h3>Product: @Model.Order.O_PIDS</h3>
+
+            <h2>Amount: 1</h2>
+
+            <h2>Pickup at your local Cougar Cars(TM) location</h2>
+
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<div>
+    <a asp-page="/Products/Details" asp-route-ID="@Model.Product.P_ID"
+       class="btn btn-primary m-1">Back</a>
+</div>
