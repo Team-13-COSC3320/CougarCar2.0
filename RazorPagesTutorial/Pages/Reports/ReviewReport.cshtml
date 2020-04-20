@@ -1,5 +1,5 @@
 ﻿@page "{id:int?}"
-@model WebApplication3.Pages.Reports.ReviewReportModel
+@model RazorPagesTutorial.Pages.Reports.ReviewReportModel
 @{
     ViewData["Title"] = "ReviewReport";
     
@@ -26,12 +26,11 @@
             <div class="form-group">
                 @if (Model.star == 0)
                 {
-
-                    <h2>All current reviews in the system</h2>
+                    <h2>Currently we have @Model.count reviews in the system</h2>
                 }
                 else
                 {
-                    <h2>Report for @Model.star stars Reviews</h2>
+                    <h2>@Model.count report for @Model.star stars Reviews</h2>
                 }
             </div>
         </form>
