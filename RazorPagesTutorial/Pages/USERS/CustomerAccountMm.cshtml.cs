@@ -71,6 +71,18 @@ namespace RazorPagesTutorial.Pages.USERS
             {
                 return Page();
             }
+            if (HttpContext.Session.Get("Id") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Id");
+                string ID = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["Userid"] = ID;
+            }
+            if (HttpContext.Session.Get("Role") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Role");
+                string Role = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["UserRole"] = Role;
+            }
 
             _context.Attach(USERS).State = EntityState.Modified;
 
