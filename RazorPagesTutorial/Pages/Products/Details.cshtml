@@ -28,13 +28,13 @@
             <div class="card-footer text-center">
                 <a asp-page="/Products/ProductList"
                    class="btn btn-primary">Back</a>
-                @if (ViewData["UserId"] != null)
+                @if (ViewData["Userid"] != null)
                 {
                     <a asp-page="/Orders/OrderCreate" asp-route-ID="@Model.Product.P_ID"
                        class="btn btn-primary">Buy</a>
                 }
 
-                @if (ViewData["UserId"] == null)
+                @if (ViewData["Userid"] == null)
                 {
                     <a asp-page="/USERS/Login"
                        class="btn btn-primary">Buy</a>
@@ -59,11 +59,15 @@
                 <h3>@review.R_Content</h3>
             </div>
             <div class="card-footer text-center">
-                @if (ViewData["UserId"].ToString() == review.R_UID.ToString())
+                @if (ViewData["Userid"] != null)
                 {
-                    <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewEdit" asp-route-ID="@review.R_ID">Edit</a>
-                    <a class="btn btn-large btn-danger" asp-page="/Reviews/ReviewDelete" asp-route-ID="@review.R_ID">Delete</a>
+                    @if (ViewData["Userid"].ToString().Contains(review.R_UID.ToString()))
+                    {
+                        <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewEdit" asp-route-ID="@review.R_ID">Edit</a>
+                        <a class="btn btn-large btn-danger" asp-page="/Reviews/ReviewDelete" asp-route-ID="@review.R_ID">Delete</a>
+                    }
                 }
+
 
             </div>
         </div>
