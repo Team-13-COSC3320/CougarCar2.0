@@ -62,15 +62,6 @@ namespace RazorPagesTutorial.Pages.USERS
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            /*
-            if (USERS.U_Role.Equals("Master"))
-            {
-                return RedirectToPage("../USERS/Index");
-            }*/
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
             if (HttpContext.Session.Get("Id") != null)
             {
                 byte[] str = HttpContext.Session.Get("Id");
@@ -84,7 +75,17 @@ namespace RazorPagesTutorial.Pages.USERS
                 ViewData["UserRole"] = Role;
             }
 
+            /*
+            if (USERS.U_Role.Equals("Master"))
+            {
+                return RedirectToPage("../USERS/Index");
+            }*/
+            //if (!ModelState.IsValid)
+            //{
+              //  return Page();
+            //}
             _context.Attach(USERS).State = EntityState.Modified;
+            USERS.U_Role = ViewData["UserRole"].ToString();
 
             try
             {
