@@ -1,0 +1,49 @@
+﻿@page
+@model RazorPagesTutorial.OrderCustomerTableModel
+@{
+    ViewData["Title"] = "OrderCustomerTable";
+}
+
+<h1>Your Orders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].O_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].O_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].O_PIDS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders[0].O_Status)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.O_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.O_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.O_PIDS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.O_Status)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

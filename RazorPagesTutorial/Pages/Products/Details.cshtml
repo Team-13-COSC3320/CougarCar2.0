@@ -18,9 +18,9 @@
             <div class="card-body text-center">
                 <img class="card-img-top" src="/Images/@Model.Product.P_Image" onerror="this.onerror = null; this.src='/Images/no-image.jpg'" asp-append-version="true" width="300" height="300"/>
 
-                <h4>Product ID : @Model.Product.P_ID</h4>
-                <h4>Price : @Model.Product.P_Price</h4>
-                <h4>Category : @Model.Product.P_Category</h4>
+              
+                <h4>Price: $@Model.Product.P_Price</h4>
+                <h4>Category: @Model.Product.P_Category</h4>
                 <h4>Description: @Model.Product.P_Description</h4>
                 <h4>Amount in Stock: @Model.Product.P_Amount</h4>
 
@@ -52,7 +52,7 @@
 
         <div class="card m-3" style="min-width : 18rem; max-width:30.5%;">
             <div class=" card-header">
-                <h3>User:@review.R_UID - @review.R_Title - Star:@review.R_Star</h3>
+                <h3>@review.R_Title - @review.R_Star Star(s)</h3>
             </div>
 
             <div class=" card-body">

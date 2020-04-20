@@ -48,7 +48,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/USERS/CustomerAccountMm" asp-route-id="@ViewData["UserId"].ToString()">Account Info</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Orders/OrderCustomerTable" asp-route-id="@ViewData["UserId"].ToString()">Your Orders</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Reviews/ReviewCustomerTable" asp-route-id="@ViewData["UserId"].ToString()">Your Reviews</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/USERS/Logout">Logout</a>
                             </li>

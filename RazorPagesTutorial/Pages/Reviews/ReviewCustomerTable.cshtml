@@ -1,0 +1,73 @@
+﻿@page
+@model RazorPagesTutorial.ReviewCustomerTableModel
+@{
+    ViewData["Title"] = "ReviewCustomerTable";
+}
+
+<h1>Your Reviews</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reviews[0].R_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reviews[0].ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reviews[0].R_UID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reviews[0].R_Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reviews[0].R_Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reviews[0].R_Star)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Reviews)
+        {
+            <tr>
+                <td>
+                    <div id="Details">
+                        <a class="btn btn-large btn-info" asp-page="/Products/Details" asp-route-ID="@item.ID">Product Page</a>
+                    </div>
+                    <div id="Edit">
+                        <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewEdit" asp-route-ID="@item.R_ID">Edit</a>
+                    </div>
+                    <div id="Delete">
+                        <a class="btn btn-large btn-danger" asp-page="/Reviews/ReviewDelete" asp-route-ID="@item.R_ID">Delete</a>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.R_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.R_UID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.R_Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.R_Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.R_Star)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

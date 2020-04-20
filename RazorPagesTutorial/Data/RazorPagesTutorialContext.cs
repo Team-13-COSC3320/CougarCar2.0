@@ -43,5 +43,31 @@ namespace RazorPagesTutorial.Data
 
             return validReviews;
         }
+
+        internal List<Orders> GetOrderFromUser(int? id)
+        {
+            List<Orders> validOrders = new List<Orders>();
+            foreach(Orders o in Orders)
+            {
+                if(id == o.O_UID)
+                {
+                    validOrders.Add(o);
+                }
+            }
+            return validOrders;
+        }
+
+        internal List<Review> GetReviewsFromUser(int? id)
+        {
+            List<Review> validreviews = new List<Review>();
+            foreach (Review r in Review)
+            {
+                if (id == r.R_UID)
+                {
+                    validreviews.Add(r);
+                }
+            }
+            return validreviews;
+        }
     }
 }
