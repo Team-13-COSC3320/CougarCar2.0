@@ -8,8 +8,9 @@
 <h1 style="color:red; font-family:'Century Gothic'">Welcome @Model.USERS[Model.currentID].U_LName to Admin WebTool</h1>
 
 <div class="clearfix">
-    <a type="button" class="btn btn-secondary float-left" asp-page="Create">Create New User</a>
-    <a type="button" class="btn btn-secondary float-right" asp-page="../Index">Logout</a>
+    <a type="button" class="btn btn-secondary float-left" asp-page="Create" asp-route-id="@Model.currentID">Create New User</a>
+    <a type="button" asp-page="../Reports/ReviewReport" asp-route-id="@Model.currentID">Review's report</a>
+    <a type="button" class="btn btn-secondary float-right" asp-page="/Users/Logout">Logout</a>
 </div>
 <body class="flex-wrap">
     <table class="table table-hover">

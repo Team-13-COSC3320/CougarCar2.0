@@ -42,12 +42,9 @@
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Reports/ReviewReport">Review Report</a>
                                 </li>
                             }
-                            if (ViewData["UserRole"].ToString().Contains("Customer"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/USERS/CustomerAccountMm">Account Info</a>
-                                </li>
-                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/USERS/CustomerAccountMm" asp-route-id="@ViewData["UserId"].ToString()">Account Info</a>
+                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/USERS/Logout">Logout</a>

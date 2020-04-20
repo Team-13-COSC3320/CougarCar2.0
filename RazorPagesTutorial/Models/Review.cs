@@ -10,7 +10,7 @@ namespace LibraryData.Models
     {
         [Key]
         public int R_ID { get; set; }
-        public int? R_UID { get; set; }
+        public int R_UID { get; set; }
         public string? R_Title { get; set; } //char 50
         public string R_Content { get; set; } //char 300
         public int? R_Star { get; set; }
