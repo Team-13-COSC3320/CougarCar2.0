@@ -1,0 +1,79 @@
+﻿@page
+@model RazorPagesTutorial.RevenueReportModel
+@{
+    ViewData["Title"] = "RevenueReport";
+}
+
+<h1>Revenue Report</h1>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+@foreach (System.Data.DataTable table in Model.dataSet.Tables)
+{
+    <table>
+        <thead>
+            <tr>
+                @foreach (System.Data.DataColumn col in table.Columns)
+                {
+                    <th>@col.ColumnName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (System.Data.DataRow row in table.Rows)
+            {
+                <tr>
+                    @foreach (System.Data.DataColumn col2 in table.Columns)
+                    {
+                        <td>@row[col2.ColumnName]</td>
+
+                    }
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+
+
+
+
+
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.dataSet.Tables[0].Columns[0].ColumnName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dataSet.Tables[0].Columns[1].ColumnName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dataSet.Tables[0].Columns[2].ColumnName)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model.dataSet.Tables[0].Rows)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => row.ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => row.ToString())
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => row.ToString())
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
