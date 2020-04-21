@@ -94,9 +94,6 @@ namespace RazorPagesTutorial
                 HttpContext.Session.SetString("Index", test.ToString());
                 current_image = imagefiles[test];
                 validReviews = _context.GetReviewsOnProduct(product_ids[test]);
-                Console.SetOut(new DebugTextWriter());
-                Console.WriteLine(product_ids[test]);
-                Console.WriteLine(imagefiles[test]);
                 review_pid = test;
             }
             else if (side.Contains("Left"))
@@ -110,9 +107,6 @@ namespace RazorPagesTutorial
                 }
                 HttpContext.Session.SetString("Index", test.ToString());
                 current_image = imagefiles[test];
-                Console.SetOut(new DebugTextWriter());
-                Console.WriteLine(product_ids[test]);
-                Console.WriteLine(imagefiles[test]);
                 validReviews = _context.GetReviewsOnProduct(product_ids[test]);
                 review_pid = test;
             }

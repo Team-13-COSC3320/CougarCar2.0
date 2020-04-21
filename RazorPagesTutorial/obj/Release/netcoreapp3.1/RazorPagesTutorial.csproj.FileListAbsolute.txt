@@ -376,3 +376,4 @@ C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Release\netcore
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Release\netcoreapp3.1\Razor\Pages\Reports\ReviewReport.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Release\netcoreapp3.1\Razor\Pages\Orders\OrderCustomerTable.cshtml.g.cs
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Release\netcoreapp3.1\Razor\Pages\Reviews\ReviewCustomerTable.cshtml.g.cs
+C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\obj\Release\netcoreapp3.1\Razor\Pages\Reports\ReviewAVGReport.cshtml.g.cs

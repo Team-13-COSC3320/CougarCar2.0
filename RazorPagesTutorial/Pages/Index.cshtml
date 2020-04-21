@@ -3,63 +3,74 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<style>
-    test-class {
-        position: relative;
-        width: 100%;
-        max-width: 400px;
-    }
+<!DOCTYPE html>
+<head>
+    <style>
+        review-container {
+            position: relative;
+        }
+        test-class {
+            position: relative;
+            width: 100%;
+        }
 
-    .test-class .responsive-image {
-        width: 100%;
-        height: auto;
-    }
+        .test-class .responsive-image {
+            width: 100%;
+            height: auto;
+        }
 
-    .test-class .btn2-right {
-        position: absolute;
-        top: 50%;
-        left: 80%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        padding: 12px 24px;
-        cursor: pointer;
-        border-radius: 5px;
-        text-align: center;
-        background-color: Transparent;
-        background-repeat: no-repeat;
-        border: none;
-        cursor: pointer;
-        overflow: hidden;
-        outline: none;
-    }
+        .test-class .btn2-right {
+            position: relative;
+            top: 50%;
+            left: 90%;
+            transform: translate(-110%, -110%);
+            -ms-transform: translate(-50%, -50%);
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            background-color: Transparent;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            outline: none;
+        }
 
-    .test-class .btn2-left {
-        position: absolute;
-        top: 50%;
-        left: 20%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        padding: 12px 24px;
-        cursor: pointer;
-        border-radius: 5px;
-        text-align: center;
-        background-color: Transparent;
-        background-repeat: no-repeat;
-        border: none;
-        cursor: pointer;
-        overflow: hidden;
-        outline: none;
-    }
-</style>
-<div class="test-class">
-    <img src="/Images/@Model.current_image" class="responsive-image" />
-    <form method="post">
-        <button class="btn2-right " type="submit" name="Side" value="Right"><img src="~/Images/Right_arrow.png" width="70" height="70"></button>
-        <button class="btn2-left " type="submit" name="Side" value="Left"><img src="~/Images/Left_arrow.png" width="70" height="70"></button>
-    </form>
-</div>
-<div class="card-deck">
-    @foreach (var review in Model.validReviews)
+        .test-class .btn2-left {
+            position: relative;
+            top: 50%;
+            left: 10%;
+            transform: translate(-110%, -110%);
+            -ms-transform: translate(-50%, -50%);
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            background-color: Transparent;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            outline: none;
+        }
+        .test-class .btn2-left:hover{
+            background-color: transparent;
+        }
+        .test-class .btn2-right:hover {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-class">
+        <img src="~/Images/@Model.current_image" class="responsive-image" style="width:100%"/>
+        <form method="post">
+            <button class="btn2-right " type="submit" name="Side" value="Right"><img src="~/Images/Right_arrow.png" width="70" height="70"></button>
+            <button class="btn2-left " type="submit" name="Side" value="Left"><img src="~/Images/Left_arrow.png" width="70" height="70"></button>
+        </form>
+    </div>
+    <div class="card-deck">
+        @foreach (var review in Model.validReviews)
     {
         <div class="card m-3" style="min-width : 18rem; max-width:30.5%;">
             <div class=" card-header">
@@ -72,10 +83,10 @@
             <div class="card-footer text-center">
                 @if (ViewData["Userid"] != null)
                 {
-                    @if (ViewData["Userid"].ToString().Contains(review.R_UID.ToString()))
+                @if (ViewData["Userid"].ToString().Contains(review.R_UID.ToString()))
                     {
-                        <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewEdit" asp-route-ID="@review.R_ID">Edit</a>
-                        <a class="btn btn-large btn-danger" asp-page="/Reviews/ReviewDelete" asp-route-ID="@review.R_ID">Delete</a>
+                <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewEdit" asp-route-ID="@review.R_ID">Edit</a>
+                <a class="btn btn-large btn-danger" asp-page="/Reviews/ReviewDelete" asp-route-ID="@review.R_ID">Delete</a>
                     }
                 }
 
@@ -83,4 +94,6 @@
             </div>
         </div>
     }
-</div>
+    </div>
+</body>
+
