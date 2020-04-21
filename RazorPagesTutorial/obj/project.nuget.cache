@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2Agm2GpR9V4PqEVMQfwhOrDyEQjUwS1zk0GuUETtBlPQMzqiS9kN18kat9IwZ7cuxwX0+VLhht+iBj3dgSpxLA==",
+  "dgSpecHash": "cQ9IgVbIJY+vvhfePsZ4CFMijm4yf5H/80u0f5qAv7bC0cIFLtBzyZOd9wIcA66wh2ZZhyJ7D2YGTOvN2aFO3g==",
   "success": true,
   "projectFilePath": "C:\\Users\\qs\\Documents\\GitHub\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
   "expectedPackageFiles": [
@@ -29,10 +29,10 @@
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.3\\microsoft.entityframeworkcore.abstractions.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.3\\microsoft.entityframeworkcore.analyzers.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.1\\microsoft.entityframeworkcore.design.3.1.1.nupkg.sha512",
-    "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.1\\microsoft.entityframeworkcore.relational.3.1.1.nupkg.sha512",
+    "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.3\\microsoft.entityframeworkcore.relational.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\3.1.1\\microsoft.entityframeworkcore.sqlite.3.1.1.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\3.1.1\\microsoft.entityframeworkcore.sqlite.core.3.1.1.nupkg.sha512",
-    "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.1\\microsoft.entityframeworkcore.sqlserver.3.1.1.nupkg.sha512",
+    "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.3\\microsoft.entityframeworkcore.sqlserver.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.1\\microsoft.entityframeworkcore.tools.3.1.1.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.3\\microsoft.extensions.caching.abstractions.3.1.3.nupkg.sha512",
     "C:\\Users\\qs\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.3\\microsoft.extensions.caching.memory.3.1.3.nupkg.sha512",
