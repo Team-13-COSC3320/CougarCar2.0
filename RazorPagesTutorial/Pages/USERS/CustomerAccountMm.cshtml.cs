@@ -90,23 +90,19 @@ namespace RazorPagesTutorial.Pages.USERS
             try
             {
                 await _context.SaveChangesAsync();
-
-                Msg = "Save succeed";
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!USERSExists(USERS.U_ID))
                 {
                     return NotFound();
-
-                    
                 }
                 else
                 {
                     throw;
                 }
-                //Msg = "Error";
             }
+            Msg = "Save succeed";
             return Page();
         }
 

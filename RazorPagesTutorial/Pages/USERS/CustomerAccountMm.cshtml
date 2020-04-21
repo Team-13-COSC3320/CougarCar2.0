@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="USERS.U_Pass" class="control-label"></label>
-                <input asp-for="USERS.U_Pass" class="form-control" type="password" />
+                <input asp-for="USERS.U_Pass" class="form-control" />
                 <span asp-validation-for="USERS.U_Pass" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -62,11 +62,11 @@
             {
                 @if (ViewData["UserRole"].ToString().Contains("Master") || ViewData["UserRole"].ToString().Contains("Admin"))
                 {
-                    <div class="form-group">
-                        <label asp-for="USERS.U_Role" class="control-label"></label>
-                        <input asp-for="USERS.U_Role" class="form-control" readonly />
-                        <span asp-validation-for="USERS.U_Role" class="text-danger"></span>
-                    </div>
+            <div class="form-group">
+                <label asp-for="USERS.U_Role" class="control-label"></label>
+                <input asp-for="USERS.U_Role" class="form-control" readonly />
+                <span asp-validation-for="USERS.U_Role" class="text-danger"></span>
+            </div>
                 }
             }
             <div class="form-group">
@@ -74,6 +74,7 @@
             </div>
             <div class="form-group">
                 <a asp-page="../Products/ProductList" asp-route-id="@Model.USERS.U_ID">Go to Car list</a>
+                <a asp-page="../Users/Logout">Logout</a>
             </div>
         </form>
     </div>

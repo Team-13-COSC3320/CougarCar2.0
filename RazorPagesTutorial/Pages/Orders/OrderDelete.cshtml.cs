@@ -23,13 +23,19 @@ namespace RazorPagesTutorial.Pages.Orders
         }
         [BindProperty]
         public RazorPagesTutorial.Models.Orders Or { get; set; }
+        [BindProperty]
+        public Product P { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             Or = await _context.Orders.FirstOrDefaultAsync(m => m.O_ID == id);
+            P = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == Or.O_PIDS);
+            
             if (Or != null)
             {
+                P.P_Amount = P.P_Amount + 1;
                 _context.Orders.Remove(Or);
+                _context.Attach(P).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             return RedirectToPage("./OrderCustomerTable");
