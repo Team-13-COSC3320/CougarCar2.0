@@ -54,8 +54,8 @@
                 <span asp-validation-for="USERS.U_Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="USERS.U_Role" class="control-label"></label>
-                <input asp-for="USERS.U_Role" class="form-control" value="Customer" readonly />
+                <label asp-for="USERS.U_Role" class="control-label invisible" ></label>
+                <input asp-for="USERS.U_Role" class="form-control invisible" value="Customer" readonly />
                 <span asp-validation-for="USERS.U_Role" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -63,10 +63,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

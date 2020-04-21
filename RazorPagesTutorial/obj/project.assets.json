@@ -9141,25 +9141,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\qs\\.nuget\\packages\\": {}
+    "C:\\Users\\truon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\qs\\Documents\\GitHub\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
+      "projectUniqueName": "C:\\Users\\truon\\source\\repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
       "projectName": "RazorPagesTutorial",
-      "projectPath": "C:\\Users\\qs\\Documents\\GitHub\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
-      "packagesPath": "C:\\Users\\qs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\qs\\Documents\\GitHub\\CougarCar2.0\\RazorPagesTutorial\\obj\\",
+      "projectPath": "C:\\Users\\truon\\source\\repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
+      "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\truon\\source\\repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\qs\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -9234,7 +9236,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   },
