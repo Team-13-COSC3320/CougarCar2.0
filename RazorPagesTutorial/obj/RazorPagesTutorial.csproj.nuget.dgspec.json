@@ -1,28 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\truon\\source\\repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj": {}
+    "C:\\Users\\gamer\\Source\\Repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj": {}
   },
   "projects": {
-    "C:\\Users\\truon\\source\\repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj": {
+    "C:\\Users\\gamer\\Source\\Repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\truon\\source\\repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
+        "projectUniqueName": "C:\\Users\\gamer\\Source\\Repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
         "projectName": "RazorPagesTutorial",
-        "projectPath": "C:\\Users\\truon\\source\\repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
-        "packagesPath": "C:\\Users\\truon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\truon\\source\\repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\obj\\",
+        "projectPath": "C:\\Users\\gamer\\Source\\Repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\RazorPagesTutorial.csproj",
+        "packagesPath": "C:\\Users\\gamer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gamer\\Source\\Repos\\Team-13-COSC3320\\CougarCar2.0\\RazorPagesTutorial\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\truon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Users\\gamer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -52,13 +53,9 @@
               "target": "Package",
               "version": "[3.2.7, )"
             },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[3.1.3, )"
-            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.3, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
@@ -97,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

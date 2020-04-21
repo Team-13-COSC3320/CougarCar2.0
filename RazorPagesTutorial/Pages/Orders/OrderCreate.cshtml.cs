@@ -53,7 +53,6 @@ namespace RazorPagesTutorial
             Order.O_Date = DateTime.Now;
             Order.O_UID = int.Parse(ViewData["UserId"].ToString());
             Order.O_PIDS = Product.P_ID;
-            Product.P_Amount -= 1;
 
 
 
@@ -95,7 +94,6 @@ namespace RazorPagesTutorial
             Order.O_Date = DateTime.Now;
             Order.O_UID = Int32.Parse(ViewData["Userid"].ToString());
             Order.O_PIDS = Product.P_ID;
-            Product.P_Amount -= 1;
 
             string connection = "Data Source=sql5053.site4now.net;User ID=DB_A573D4_team13_admin;Password=Team13shop;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 

@@ -1324,3 +1324,4 @@ C:\Users\truon\source\repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj
 C:\Users\truon\source\repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\staticwebassets\RazorPagesTutorial.StaticWebAssets.Manifest.cache
 C:\Users\truon\source\repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\staticwebassets\RazorPagesTutorial.StaticWebAssets.xml
 C:\Users\truon\source\repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.genruntimeconfig.cache
+C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\Razor\Pages\Orders\OrderDelete.cshtml.g.cs
