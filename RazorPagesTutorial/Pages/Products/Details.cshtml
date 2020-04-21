@@ -61,7 +61,7 @@
             <div class="card-footer text-center">
                 @if (ViewData["Userid"] != null)
                 {
-                    @if (ViewData["Userid"].ToString().Contains(review.R_UID.ToString()))
+                    @if (ViewData["Userid"].ToString().Equals(review.R_UID.ToString()))
                     {
                         <a class="btn btn-large btn-info" asp-page="/Reviews/ReviewEdit" asp-route-ID="@review.R_ID">Edit</a>
                         <a class="btn btn-large btn-danger" asp-page="/Reviews/ReviewDelete" asp-route-ID="@review.R_ID">Delete</a>
