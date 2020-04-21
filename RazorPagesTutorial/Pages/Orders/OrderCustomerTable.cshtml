@@ -28,20 +28,26 @@
     <tbody>
         @foreach (var item in Model.Orders)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.O_ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.O_Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.O_PIDS)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.O_Status)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.O_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.O_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.O_PIDS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.O_Status)
+            </td>
+            <td>
+                <div id="Cancel">
+                    <a class="btn btn-large btn-danger" asp-page="/Orders/OrderDelete" asp-route-ID="@item.O_ID">Cancel</a>
+                </div>
+            </td>
+            
+        </tr>
         }
     </tbody>
 </table>
