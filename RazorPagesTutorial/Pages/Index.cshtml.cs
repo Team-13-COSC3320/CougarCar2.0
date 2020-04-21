@@ -17,10 +17,11 @@ namespace RazorPagesTutorial
     public class IndexModel : PageModel
     {
         public readonly RazorPagesTutorialContext _context;
-        
+
         List<string> imagefiles;
         List<int> product_ids;
-        public string current_image;
+        [BindProperty]
+        public string current_image { get; set; }
         public int review_pid;
 
         void set_imagefiles() {
@@ -46,19 +47,18 @@ namespace RazorPagesTutorial
         }
         public List<Review> validReviews { get; private set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
             HttpContext.Session.SetString("Index", "0");
-            byte[] str;
             if (HttpContext.Session.Get("Id") != null)
             {
-                str = HttpContext.Session.Get("Id");
+                byte[] str = HttpContext.Session.Get("Id");
                 string ID = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["Userid"] = ID;
             }
             if (HttpContext.Session.Get("Role") != null)
             {
-                str = HttpContext.Session.Get("Role");
+                byte[] str = HttpContext.Session.Get("Role");
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
@@ -66,7 +66,7 @@ namespace RazorPagesTutorial
             
         }
 
-        public void OnPost(string side)
+        public async Task OnPost(string side)
         {
             if (HttpContext.Session.Get("Id") != null)
             {
@@ -79,9 +79,9 @@ namespace RazorPagesTutorial
                 byte[] str = HttpContext.Session.Get("Role");
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
-
             }
             set_imagefiles();
+
             if (side.Contains("Right"))
             {
                 byte[] str = HttpContext.Session.Get("Index");
@@ -92,7 +92,8 @@ namespace RazorPagesTutorial
                     test = 0;
                 }
                 HttpContext.Session.SetString("Index", test.ToString());
-                current_image = imagefiles[test];
+                Random test1 = new Random();
+                current_image = imagefiles[test] + "?" + test1.Next(0, 134123);
                 validReviews = _context.GetReviewsOnProduct(product_ids[test]);
                 review_pid = test;
             }
@@ -106,7 +107,8 @@ namespace RazorPagesTutorial
                     test = imagefiles.Count()-1;
                 }
                 HttpContext.Session.SetString("Index", test.ToString());
-                current_image = imagefiles[test];
+                Random test1 = new Random();
+                current_image = imagefiles[test]+"?"+test1.Next(0,134123);
                 validReviews = _context.GetReviewsOnProduct(product_ids[test]);
                 review_pid = test;
             }
