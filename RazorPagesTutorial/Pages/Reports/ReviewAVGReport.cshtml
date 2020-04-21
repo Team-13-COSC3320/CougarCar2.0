@@ -1,0 +1,49 @@
+﻿@page
+@model RazorPagesTutorial.ReviewAVGReportModel
+@{
+    ViewData["Title"] = "ReviewAVGReport";
+}
+
+<h1>Review AVG Report</h1>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+@foreach (System.Data.DataTable table in Model.dataSet.Tables)
+{
+    @if (table == Model.dataSet.Tables[0])
+    {
+        <h2>AVG Report Rating Per Product</h2>
+    }
+    else if (table == Model.dataSet.Tables[1])
+    {
+        <h2>All Reviews</h2>
+    }
+    <table>
+        <thead>
+            <tr>
+                @foreach (System.Data.DataColumn col in table.Columns)
+                {
+                    <th>@col.ColumnName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (System.Data.DataRow row in table.Rows)
+            {
+                <tr>
+                    @foreach (System.Data.DataColumn col2 in table.Columns)
+                    {
+                        <td>@row[col2.ColumnName]</td>
+
+                    }
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
