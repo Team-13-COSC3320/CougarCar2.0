@@ -14,6 +14,18 @@
 
 @foreach (System.Data.DataTable table in Model.dataSet.Tables)
 {
+    @if (table == Model.dataSet.Tables[0])
+    {
+        <h2>Total Company Revenue</h2>
+    }
+    else if (table == Model.dataSet.Tables[1])
+    {
+        <h2>Revenue by Car</h2>
+    }
+    else
+    {
+        <h2>Most Popular Cars</h2>
+    }
     <table>
         <thead>
             <tr>
