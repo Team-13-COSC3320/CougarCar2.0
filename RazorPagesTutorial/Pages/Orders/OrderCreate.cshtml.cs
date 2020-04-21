@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace RazorPagesTutorial
 {
@@ -95,13 +97,31 @@ namespace RazorPagesTutorial
             Order.O_PIDS = Product.P_ID;
             Product.P_Amount -= 1;
 
+            string connection = "Data Source=sql5053.site4now.net;User ID=DB_A573D4_team13_admin;Password=Team13shop;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+            SqlConnection sqlConnection = new SqlConnection(connection);
 
-            _context.Orders.Add(Order);
+            string query = "Insert into Orders" +
+
+                        " (O_Date, O_UID, O_PIDS, O_Amount, O_Status)  " +
+
+                        "Values (@myDate, @uid, @pid, 1, 'Processing')";
+
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+
+            cmd.Parameters.Add("@myDate", SqlDbType.Char).Value = Order.O_Date;
+
+            cmd.Parameters.Add("@uid", SqlDbType.Char).Value = Order.O_UID;
+
+            cmd.Parameters.Add("@pid", SqlDbType.Int).Value = Order.O_PIDS;
+
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
             await _context.SaveChangesAsync();
 
 
-            return RedirectToPage("/Products/ProductList");
+            return RedirectToPage("/Orders/OrderCustomerTable");
         }
     }
 }
