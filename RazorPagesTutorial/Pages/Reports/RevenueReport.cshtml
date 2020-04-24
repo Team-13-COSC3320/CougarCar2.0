@@ -12,6 +12,23 @@
     }
 </style>
 
+<div class="row">
+    <div class="col-lg-auto">
+        <form method="post">
+            <div class="form-group">
+                <input type="date" id="Date" name="dateSelected"
+                       value="04-01-2020"
+                       min="04-01-2020" max="12-31-2020">
+
+
+                <input type="submit" value="Generate Report" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div>
+    </div>
+</div>
+
 @foreach (System.Data.DataTable table in Model.dataSet.Tables)
 {
     @if (table == Model.dataSet.Tables[0])

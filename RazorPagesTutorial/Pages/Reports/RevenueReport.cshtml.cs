@@ -25,7 +25,8 @@ namespace RazorPagesTutorial
         {
             _context = context;
         }
-        
+        [BindProperty]
+        public DateTime date { get; set; }
        
         [BindProperty]
         public DataSet dataSet { get; set; }
@@ -59,23 +60,48 @@ namespace RazorPagesTutorial
             dataSet = ds;
             con.Close();
 
-            Console.Out.Write(dataSet.Tables[0].Columns[0].ToString());
+            //Console.Out.Write(dataSet.Tables[0].Columns[0].ToString());
 
             return Page();
         }
 
-        /* SqlConnection con = new SqlConnection("YourConnection String");
-             SqlCommand cmd = new SqlCommand();
-             SqlDataAdapter da = new SqlDataAdapter();
-             DataSet ds = new DataSet();
-             cmd = new SqlCommand("RevenueReport", con);
-             cmd.CommandType = CommandType.StoredProcedure;
-             cmd.Parameters.Add("@Date1", SqlDbType.Da).Value = DateTime.Now;
+        public async Task OnPostAsync()
+        {
+            date = date = DateTime.Parse(Request.Form["dateSelected"]);
+            if(date == DateTime.MinValue)
+            {
+                date = DateTime.Parse("04-01-2020");
+            }
 
-             da = new SqlDataAdapter(cmd);
-             da.Fill(ds);
-             da.Fill(dataSet);
-             con.Close();
+            Console.Out.Write(date);
+
+            SqlConnection con = new SqlConnection("Data Source=sql5053.site4now.net;User ID=DB_A573D4_team13_admin;Password=Team13shop;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            cmd = new SqlCommand("RevenueReport", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Date1", SqlDbType.DateTime).Value = date;
+
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            dataSet = ds;
+            con.Close();
+        }
+
+
+        /* SqlConnection con = new SqlConnection("Data Source=sql5053.site4now.net;User ID=DB_A573D4_team13_admin;Password=Team13shop;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            cmd = new SqlCommand("RevenueReport", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Date1", SqlDbType.DateTime).Value = DateTime.Now;
+
+            da = new SqlDataAdapter(cmd);
+            da.Fill(ds);
+            dataSet = ds;
+            con.Close();
          */
 
 

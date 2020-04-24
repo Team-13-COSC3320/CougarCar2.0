@@ -899,7 +899,6 @@ C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\bin
 C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.csprojAssemblyReference.cache
 C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\staticwebassets\RazorPagesTutorial.StaticWebAssets.Manifest.cache
 C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\staticwebassets\RazorPagesTutorial.StaticWebAssets.xml
-C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.RazorAssemblyInfo.cache
 C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.RazorAssemblyInfo.cs
 C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.AssemblyInfoInputs.cache
@@ -1325,3 +1324,4 @@ C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreap
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\qs\Documents\GitHub\CougarCar2.0\RazorPagesTutorial\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\gamer\Source\Repos\Team-13-COSC3320\CougarCar2.0\RazorPagesTutorial\obj\Debug\netcoreapp3.1\RazorPagesTutorial.MvcApplicationPartsAssemblyInfo.cache
