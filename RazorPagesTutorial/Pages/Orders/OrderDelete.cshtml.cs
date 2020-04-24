@@ -21,24 +21,76 @@ namespace RazorPagesTutorial.Pages.Orders
         {
             _context = context;
         }
+
+
         [BindProperty]
-        public RazorPagesTutorial.Models.Orders Or { get; set; }
+        public RazorPagesTutorial.Models.Orders Order { get; set; }
+
+
         [BindProperty]
         public Product P { get; set; }
 
+        public string role { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            Or = await _context.Orders.FirstOrDefaultAsync(m => m.O_ID == id);
-            P = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == Or.O_PIDS);
-            
-            if (Or != null)
+            if (id == null)
             {
-                P.P_Amount = P.P_Amount + 1;
-                _context.Orders.Remove(Or);
-                _context.Attach(P).State = EntityState.Modified;
+                return NotFound();
+            }
+            if (HttpContext.Session.Get("Id") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Id");
+                string ID = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["Userid"] = ID;
+            }
+            if (HttpContext.Session.Get("Role") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Role");
+                string Role = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["UserRole"] = Role;
+                role = ViewData["UserRole"].ToString();
+            }
+            Order = await _context.Orders.FirstOrDefaultAsync(m => m.O_ID == id);
+
+            if (Order == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            List<RazorPagesTutorial.Models.Orders> list = _context.Orders.ToList();
+            var test = list.Last();
+            //string removing = _environment.WebRootPath.ToString() + "/Images/" + test.P_Image;
+            //if (System.IO.File.Exists(removing))
+            //{
+            //    System.IO.File.Delete(removing);
+            //}
+
+            Order = await _context.Orders.FindAsync(id);
+
+            if (Order != null)
+            {
+                _context.Orders.Remove(Order);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToPage("./OrderCustomerTable");
+            if (role == "Admin" || role == "Master")
+            {
+                return RedirectToPage("./OrderTable");
+            }
+            else
+            {
+                return RedirectToPage("./OrderCustomerTable");
+            }
+            
         }
     }
 }

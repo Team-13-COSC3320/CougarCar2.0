@@ -41,9 +41,9 @@
                     <div id="Edit">
                         <a class="btn btn-large btn-info" asp-page="/Orders/OrderEdit" asp-route-ID="@item.O_ID">Edit</a>
                     </div>
-                    @*<div id="Delete">
-                        <a class="btn btn-large btn-danger" asp-page="/Reviews/ReviewDelete" asp-route-ID="@item.R_ID">Delete</a>
-                    </div>*@
+                    <div id="Delete">
+                        <a class="btn btn-large btn-danger" asp-page="/Orders/OrderDelete" asp-route-ID="@item.O_ID">Delete</a>
+                    </div>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.O_ID)
