@@ -239,5 +239,30 @@ namespace RazorPagesTutorial.Data
             sqlConnection.Close();
             return users;
         }
+        internal List<Review> getReviewList()
+        {
+            List<Review> reviews = new List<Review>();
+
+            SqlConnection sqlConnection = new SqlConnection(connection);
+            SqlCommand cmd = new SqlCommand("dbo.get_all_Reviews", sqlConnection);
+
+            sqlConnection.Open();
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    Review r = new Review();
+                    r.R_ID = rdr.GetInt32(0);
+                    r.R_UID = rdr.GetInt32(1);
+                    r.R_Title = rdr.GetString(2);
+                    r.R_Content = rdr.GetString(3);
+                    r.R_Star = rdr.GetInt32(4);
+                    r.ID = rdr.GetInt32(5);
+                    reviews.Add(r);
+                }
+            }
+            sqlConnection.Close();
+            return reviews;
+        }
     }
 }
