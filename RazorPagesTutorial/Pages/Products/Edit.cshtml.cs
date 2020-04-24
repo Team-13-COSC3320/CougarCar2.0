@@ -13,6 +13,8 @@ using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace RazorPagesTutorial.Pages.Products
 {
@@ -83,22 +85,48 @@ namespace RazorPagesTutorial.Pages.Products
                 
             }
             _context.Attach(Product).State = EntityState.Modified;
+
+            string connection = "Data Source=sql5053.site4now.net;User ID=DB_A573D4_team13_admin;Password=Team13shop;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            SqlConnection sqlConnection = new SqlConnection(connection);
+
+            string query = "Update dbo.Products " +
+                            "Set " +
+                            "P_Name = @P_Name, P_Category = @P_Category, P_Image = @P_Image, P_Price = @P_Price, P_Description = @P_Description, P_Amount = @P_Amount " +
+                            "Where P_ID = @P_ID"; //+
             
-            try
+            var name = Product.P_Name;
+            var cat = Product.P_Category;
+
+            
+           
+            var price = Product.P_Price;
+            var desc = Product.P_Description;
+            var amount = Product.P_Amount;
+            var image = Product.P_Image;
+            if (image == null)
             {
-                await _context.SaveChangesAsync();
+                Product = _context.getProduct(Product.P_ID);
+                image = Product.P_Image;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(Product.P_ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+
+            Console.Out.Write(ViewData["Userid"]);
+            SqlCommand cmd = new SqlCommand(query, sqlConnection);
+            cmd.Parameters.Add("@P_Name", SqlDbType.Char).Value = name;
+            cmd.Parameters.Add("@P_Category", SqlDbType.Char).Value = cat;
+            cmd.Parameters.Add("@P_Image", SqlDbType.Char).Value = image;
+            cmd.Parameters.Add("@P_Price", SqlDbType.Int).Value = price;
+            cmd.Parameters.Add("@P_Description", SqlDbType.Char).Value = desc;
+            cmd.Parameters.Add("@P_Amount", SqlDbType.Int).Value = amount;
+
+            cmd.Parameters.Add("@P_ID", SqlDbType.Int); //ViewData["Userid"]
+            cmd.Parameters["@P_ID"].Value = Product.P_ID;
+
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
+
+
+
             return RedirectToPage("./Index");
         }
 
