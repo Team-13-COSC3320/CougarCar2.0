@@ -10,6 +10,8 @@ using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 
 namespace RazorPagesTutorial.Pages.Orders
@@ -32,12 +34,8 @@ namespace RazorPagesTutorial.Pages.Orders
 
         public string role { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
             if (HttpContext.Session.Get("Id") != null)
             {
                 byte[] str = HttpContext.Session.Get("Id");
@@ -51,7 +49,7 @@ namespace RazorPagesTutorial.Pages.Orders
                 ViewData["UserRole"] = Role;
                 role = ViewData["UserRole"].ToString();
             }
-            Order = await _context.Orders.FirstOrDefaultAsync(m => m.O_ID == id);
+            Order = _context.getOrder(id);
 
             if (Order == null)
             {
@@ -60,28 +58,28 @@ namespace RazorPagesTutorial.Pages.Orders
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Order = _context.getOrder(id);
 
-            List<RazorPagesTutorial.Models.Orders> list = _context.Orders.ToList();
-            var test = list.Last();
-            //string removing = _environment.WebRootPath.ToString() + "/Images/" + test.P_Image;
-            //if (System.IO.File.Exists(removing))
-            //{
-            //    System.IO.File.Delete(removing);
-            //}
-
-            Order = await _context.Orders.FindAsync(id);
+            P = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == Order.O_PIDS);
 
             if (Order != null)
             {
-                _context.Orders.Remove(Order);
-                await _context.SaveChangesAsync();
+
+                SqlConnection sqlConnection = new SqlConnection(_context.connection);
+
+                SqlCommand cmd = new SqlCommand("dbo.delete_Order", sqlConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@p_id", SqlDbType.Int).Value = P.P_ID;
+                cmd.Parameters.Add("@p_amount", SqlDbType.Int).Value = P.P_Amount + 1;
+
+                sqlConnection.Open();
+                cmd.ExecuteNonQuery();
+                sqlConnection.Close();
             }
+
             if (role == "Admin" || role == "Master")
             {
                 return RedirectToPage("./OrderTable");
