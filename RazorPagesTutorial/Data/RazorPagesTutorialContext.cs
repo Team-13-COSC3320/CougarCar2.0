@@ -99,7 +99,6 @@ namespace RazorPagesTutorial.Data
             sqlConnection.Close();
             return Or;
         }
-
         internal Product getProduct(int id)
         {
             Product p = new Product();
@@ -117,7 +116,6 @@ namespace RazorPagesTutorial.Data
                 while (rdr.Read())
                 {
                     p.P_ID = rdr.GetInt32(0);
-
                     p.P_Name = rdr.GetString(1);
                     p.P_Category = rdr.GetString(2);
                     p.P_Image = rdr.GetString(3);
@@ -128,6 +126,143 @@ namespace RazorPagesTutorial.Data
             }
             sqlConnection.Close();
             return p;
+        }
+        internal USER getUser(int id)
+        {
+            USER U = new USER();
+
+            SqlConnection sqlConnection = new SqlConnection(connection);
+
+            SqlCommand cmd = new SqlCommand("dbo.get_User", sqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+            sqlConnection.Open();
+            Console.SetOut(new DebugTextWriter());
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    U.U_ID = rdr.GetInt32(0);
+                    U.U_Pass = rdr.GetString(1);
+                    U.U_FName = rdr.GetString(2);
+                    U.U_LName = rdr.GetString(3);
+                    U.U_Address = rdr.GetString(4);
+                    U.U_Country = rdr.GetString(5);
+                    U.U_Zipcode = rdr.GetString(6);
+                    U.U_Phone = rdr.GetString(7);
+                    U.U_Email = rdr.GetString(8);
+                    U.U_Role = rdr.GetString(9);
+                }
+            }
+            sqlConnection.Close();
+            return U;
+        }
+        internal List<Product> getProductList()
+        {
+            List<Product> products = new List<Product>();
+
+            SqlConnection sqlConnection = new SqlConnection(connection);
+
+            SqlCommand cmd = new SqlCommand("dbo.get_all_Product", sqlConnection);
+
+            sqlConnection.Open();
+            Console.SetOut(new DebugTextWriter());
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    Product p = new Product();
+                    p.P_ID = rdr.GetInt32(0);
+                    p.P_Name = rdr.GetString(1);
+                    p.P_Category = rdr.GetString(2);
+                    p.P_Image = rdr.GetString(3);
+                    p.P_Price = rdr.GetInt32(4);
+                    p.P_Description = rdr.GetString(5);
+                    p.P_Amount = rdr.GetInt32(6);
+                    products.Add(p);
+                }
+            }
+            sqlConnection.Close();
+            return products;
+        }
+        internal List<Orders> getOrderList()
+        {
+            List<Orders> order = new List<Orders>();
+
+            SqlConnection sqlConnection = new SqlConnection(connection);
+            SqlCommand cmd = new SqlCommand("dbo.get_all_Orders", sqlConnection);
+
+            sqlConnection.Open();
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    Orders o = new Orders();
+                    o.O_ID = rdr.GetInt32(0);
+                    o.O_Date = rdr.GetDateTime(1);
+                    o.O_UID = rdr.GetInt32(2);
+                    o.O_PIDS = rdr.GetInt32(3);
+                    o.O_Status = rdr.GetString(5);
+                    order.Add(o);
+                }
+            }
+            sqlConnection.Close();
+            return order;
+        }
+        internal List<USER> getUserList()
+        {
+            List<USER> users = new List<USER>();
+
+            SqlConnection sqlConnection = new SqlConnection(connection);
+            SqlCommand cmd = new SqlCommand("dbo.get_all_Users", sqlConnection);
+
+            sqlConnection.Open();
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    USER U = new USER();
+                    U.U_ID = rdr.GetInt32(0);
+                    U.U_Pass = rdr.GetString(1);
+                    U.U_FName = rdr.GetString(2);
+                    U.U_LName = rdr.GetString(3);
+                    U.U_Address = rdr.GetString(4);
+                    U.U_Country = rdr.GetString(5);
+                    U.U_Zipcode = rdr.GetString(6);
+                    U.U_Phone = rdr.GetString(7);
+                    U.U_Email = rdr.GetString(8);
+                    U.U_Role = rdr.GetString(9);
+                    users.Add(U);
+                }
+            }
+            sqlConnection.Close();
+            return users;
+        }
+        internal List<Review> getReviewList()
+        {
+            List<Review> reviews = new List<Review>();
+
+            SqlConnection sqlConnection = new SqlConnection(connection);
+            SqlCommand cmd = new SqlCommand("dbo.get_all_Reviews", sqlConnection);
+
+            sqlConnection.Open();
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    Review r = new Review();
+                    r.R_ID = rdr.GetInt32(0);
+                    r.R_UID = rdr.GetInt32(1);
+                    r.R_Title = rdr.GetString(2);
+                    r.R_Content = rdr.GetString(3);
+                    r.R_Star = rdr.GetInt32(4);
+                    r.ID = rdr.GetInt32(5);
+                    reviews.Add(r);
+                }
+            }
+            sqlConnection.Close();
+            return reviews;
         }
     }
 }

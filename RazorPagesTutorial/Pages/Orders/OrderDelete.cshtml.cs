@@ -34,7 +34,7 @@ namespace RazorPagesTutorial.Pages.Orders
 
         public string role { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (HttpContext.Session.Get("Id") != null)
             {
@@ -49,7 +49,7 @@ namespace RazorPagesTutorial.Pages.Orders
                 ViewData["UserRole"] = Role;
                 role = ViewData["UserRole"].ToString();
             }
-            Order = _context.getOrder(id);
+            Order = _context.getOrder(id.GetValueOrDefault());
 
             if (Order == null)
             {
@@ -58,9 +58,9 @@ namespace RazorPagesTutorial.Pages.Orders
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            Order = _context.getOrder(id);
+            Order = _context.getOrder(id.GetValueOrDefault());
 
             P = _context.getProduct(Order.O_PIDS.GetValueOrDefault());
 

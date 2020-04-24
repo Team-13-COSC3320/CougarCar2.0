@@ -36,7 +36,7 @@ namespace RazorPagesTutorial
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Orders = await _context.Orders.ToListAsync();
+            Orders = _context.getOrderList();
         }
 
     }

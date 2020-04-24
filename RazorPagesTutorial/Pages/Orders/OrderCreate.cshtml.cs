@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text;
@@ -31,10 +30,6 @@ namespace RazorPagesTutorial
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
             if (HttpContext.Session.Get("Id") != null)
             {
                 byte[] str = HttpContext.Session.Get("Id");
@@ -47,17 +42,12 @@ namespace RazorPagesTutorial
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == id);
+            Product = _context.getProduct(id.GetValueOrDefault());
             Order = new Orders();
             Order.O_Status = "Processing";
             Order.O_Date = DateTime.Now;
             Order.O_UID = int.Parse(ViewData["UserId"].ToString());
             Order.O_PIDS = Product.P_ID;
-
-
-
-            //_context.Orders.Add(Order);
-            //await _context.SaveChangesAsync();
 
             if (Product == null)
             {
@@ -87,7 +77,7 @@ namespace RazorPagesTutorial
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == id);
+            Product = _context.getProduct(id.GetValueOrDefault());
             Order = new Orders();
 
             Order.O_Status = "Processing";
@@ -116,9 +106,7 @@ namespace RazorPagesTutorial
             sqlConnection.Open();
             cmd.ExecuteNonQuery();
             sqlConnection.Close();
-            await _context.SaveChangesAsync();
-
-
+   
             return RedirectToPage("/Orders/OrderCustomerTable");
         }
     }
