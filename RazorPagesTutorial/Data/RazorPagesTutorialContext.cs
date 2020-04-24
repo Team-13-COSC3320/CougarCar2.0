@@ -89,18 +89,45 @@ namespace RazorPagesTutorial.Data
             {
                 while (rdr.Read())
                 {
-                    Console.WriteLine(rdr[0].ToString());
                     Or.O_ID = rdr.GetInt32(0);
-                    Console.WriteLine(Or.O_ID.ToString());
                     Or.O_Date = rdr.GetDateTime(1);
                     Or.O_UID = rdr.GetInt32(2);
                     Or.O_PIDS = rdr.GetInt32(3);
                     Or.O_Status = rdr.GetString(5);
-                    Console.WriteLine(Or.O_Status);
                 }
             }
             sqlConnection.Close();
             return Or;
+        }
+
+        internal Product getProduct(int id)
+        {
+            Product p = new Product();
+
+            SqlConnection sqlConnection = new SqlConnection(connection);
+
+            SqlCommand cmd = new SqlCommand("dbo.get_Product", sqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+            sqlConnection.Open();
+            Console.SetOut(new DebugTextWriter());
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    p.P_ID = rdr.GetInt32(0);
+
+                    p.P_Name = rdr.GetString(1);
+                    p.P_Category = rdr.GetString(2);
+                    p.P_Image = rdr.GetString(3);
+                    p.P_Price = rdr.GetInt32(4);
+                    p.P_Description = rdr.GetString(5);
+                    p.P_Amount = rdr.GetInt32(6);
+                }
+            }
+            sqlConnection.Close();
+            return p;
         }
     }
 }

@@ -62,7 +62,7 @@ namespace RazorPagesTutorial.Pages.Orders
         {
             Order = _context.getOrder(id);
 
-            P = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == Order.O_PIDS);
+            P = _context.getProduct(Order.O_PIDS.GetValueOrDefault());
 
             if (Order != null)
             {
@@ -70,16 +70,23 @@ namespace RazorPagesTutorial.Pages.Orders
                 SqlConnection sqlConnection = new SqlConnection(_context.connection);
 
                 SqlCommand cmd = new SqlCommand("dbo.delete_Order", sqlConnection);
-                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 cmd.Parameters.Add("@p_id", SqlDbType.Int).Value = P.P_ID;
                 cmd.Parameters.Add("@p_amount", SqlDbType.Int).Value = P.P_Amount + 1;
+                cmd.CommandType = CommandType.StoredProcedure;
+                
 
                 sqlConnection.Open();
                 cmd.ExecuteNonQuery();
                 sqlConnection.Close();
             }
-
+            if (HttpContext.Session.Get("Role") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Role");
+                string Role = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["UserRole"] = Role;
+                role = ViewData["UserRole"].ToString();
+            }
             if (role == "Admin" || role == "Master")
             {
                 return RedirectToPage("./OrderTable");
