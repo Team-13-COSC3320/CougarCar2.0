@@ -45,8 +45,8 @@ namespace RazorPagesTutorial
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            
-            Order = await _context.Orders.FirstOrDefaultAsync(m => m.O_ID == id);
+
+            Order = _context.getOrder(id.GetValueOrDefault());
             
             if (Order == null)
             {
@@ -68,35 +68,14 @@ namespace RazorPagesTutorial
             string query = "Update dbo.ORDERS " +
                             "Set " +
                             "O_Status = @O_Status " +
-                            "Where O_ID = @O_ID"; //+
-                                                    //"Where R_ID = @R_ID AND R_UID = @R_UID";
-
+                            "Where O_ID = @O_ID"; 
             SqlCommand cmd = new SqlCommand(query, sqlConnection);
-            //Console.Out.Write(Order.O_ID);
             cmd.Parameters.Add("@O_Status", SqlDbType.Char).Value = Order.O_Status;
             cmd.Parameters.Add("@O_ID", SqlDbType.Int).Value = Order.O_ID;
 
             sqlConnection.Open();
             cmd.ExecuteNonQuery();
             sqlConnection.Close();
-
-            //_context.Attach(Order).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrderExists(Order.O_ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
            
             return RedirectToPage("./OrderTable");
         }
