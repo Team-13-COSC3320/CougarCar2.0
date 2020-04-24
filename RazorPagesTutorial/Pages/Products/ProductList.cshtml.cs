@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text;
@@ -37,7 +36,7 @@ namespace RazorPagesTutorial
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Product = await _context.Product.ToListAsync();
+            Product = _context.getProductList();
         }
     }
 }

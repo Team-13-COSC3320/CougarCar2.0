@@ -22,7 +22,5 @@ namespace RazorPagesTutorial.Models
         public string? P_Description { get; set; }
         public int? P_Amount { get; set; }
 
-        //public bool P_Status{ get; set; }
-
     }
 }

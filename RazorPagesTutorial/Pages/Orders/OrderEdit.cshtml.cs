@@ -62,8 +62,8 @@ namespace RazorPagesTutorial
                 return Page();
             }
            
-            string connection = "Data Source=sql5053.site4now.net;User ID=DB_A573D4_team13_admin;Password=Team13shop;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            SqlConnection sqlConnection = new SqlConnection(connection);
+            
+            SqlConnection sqlConnection = new SqlConnection(_context.connection);
 
             string query = "Update dbo.ORDERS " +
                             "Set " +
@@ -78,11 +78,6 @@ namespace RazorPagesTutorial
             sqlConnection.Close();
            
             return RedirectToPage("./OrderTable");
-        }
-
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.O_ID == id);
         }
     }
 }

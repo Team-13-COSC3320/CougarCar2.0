@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace RazorPagesTutorial.Pages.Products
 {
@@ -48,7 +49,7 @@ namespace RazorPagesTutorial.Pages.Products
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == id);
+            Product = _context.getProduct(id);
             Id = id;
             if (Product == null)
             {
@@ -82,29 +83,27 @@ namespace RazorPagesTutorial.Pages.Products
                 }
                 
             }
-            _context.Attach(Product).State = EntityState.Modified;
-            
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(Product.P_ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToPage("./Index");
-        }
 
-        private bool ProductExists(int id)
-        {
-            return _context.Product.Any(e => e.P_ID == id);
+            SqlConnection sqlConnection = new SqlConnection(_context.connection);
+            SqlCommand cmd = new SqlCommand("dbo.edit_Product", sqlConnection);
+            cmd.Parameters.Add("@p_id", SqlDbType.Int).Value = Product.P_ID;
+            cmd.Parameters.Add("@p_name", SqlDbType.Char).Value = Product.P_Name;
+            cmd.Parameters.Add("@p_cat", SqlDbType.Char).Value = Product.P_Category;
+            if (Product.P_Image == null)
+                Product.P_Image = _context.getProduct(Product.P_ID).P_Image;
+            cmd.Parameters.Add("@p_img", SqlDbType.VarChar).Value = Product.P_Image;
+            cmd.Parameters.Add("@p_price", SqlDbType.Int).Value = Product.P_Price;
+            if (Product.P_Description == null)
+                Product.P_Description = "";
+            cmd.Parameters.Add("@p_desc", SqlDbType.VarChar).Value = Product.P_Description;
+            cmd.Parameters.Add("@p_amount", SqlDbType.Int).Value = Product.P_Amount;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
+
+            return RedirectToPage("./Index");
         }
     }
 }

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LibraryData.Models;
+using LibraryData.Models; 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
@@ -55,12 +54,12 @@ namespace RazorPagesTutorial.Pages.Products
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Product = await _context.Product.AsNoTracking().FirstOrDefaultAsync(m => m.P_ID == id);
-            Products = await _context.Product.ToListAsync();
+            Product = _context.getProduct(id.GetValueOrDefault());
+            Products = _context.getProductList();
             productSelectList = new SelectList(Products, "ID", "P_Name");
             SelectedId = 1;
 
-            validReviews = _context.GetReviewsOnProduct(id);
+            validReviews = _context.GetReviewsOnProduct(id.GetValueOrDefault());
 
             return Page();
         }

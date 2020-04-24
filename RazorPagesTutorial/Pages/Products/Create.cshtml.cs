@@ -13,6 +13,8 @@ using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace RazorPagesTutorial.Pages.Products
 {
@@ -58,16 +60,11 @@ namespace RazorPagesTutorial.Pages.Products
                 return Page();
             }
 
+            List<Product> plist = _context.getProductList();
 
-            _context.Product.Add(Product);
-            await _context.SaveChangesAsync();
-            List<Product> list = _context.Product.ToList();
-
-            var test = list.Last();
-            Console.SetOut(new DebugTextWriter());
             if (Upload != null)
             {
-                var fileName = test.P_ID.ToString() + Path.GetExtension(Upload.FileName);
+                var fileName = plist[plist.Count() - 1].P_ID.ToString() + Path.GetExtension(Upload.FileName);
                 var file = Path.Combine(_environment.WebRootPath, "Images", fileName);
 
                 using (var fileStream = new FileStream(file, FileMode.Create))
@@ -75,10 +72,31 @@ namespace RazorPagesTutorial.Pages.Products
                     await Upload.CopyToAsync(fileStream);
                 }
 
-                _context.Product.Find(test.P_ID).P_Image = Path.GetFileName(fileName);
+                Product.P_Image = Path.GetFileName(fileName);
             }
 
-            await _context.SaveChangesAsync();
+            SqlConnection sqlConnection = new SqlConnection(_context.connection);
+            SqlCommand cmd = new SqlCommand("dbo.add_Product", sqlConnection);
+            
+            cmd.Parameters.Add("@p_name", SqlDbType.Char).Value = Product.P_Name;
+            cmd.Parameters.Add("@p_cat", SqlDbType.Char).Value = Product.P_Category;
+            if (Product.P_Image == null)
+                Product.P_Image = "no-image.jpg";
+            cmd.Parameters.Add("@p_img", SqlDbType.VarChar).Value = Product.P_Image;
+            if (Product.P_Price == null)
+                Product.P_Price = 0;
+            cmd.Parameters.Add("@p_price", SqlDbType.Int).Value = Product.P_Price;
+            if (Product.P_Description == null)
+                Product.P_Description = "";
+            cmd.Parameters.Add("@p_desc", SqlDbType.VarChar).Value = Product.P_Description;
+            if (Product.P_Amount == null)
+                Product.P_Amount = 5;
+            cmd.Parameters.Add("@p_amount", SqlDbType.Int).Value = Product.P_Amount;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
 
             return RedirectToPage("./Index");
         }

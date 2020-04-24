@@ -9,7 +9,9 @@ using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using System.Data;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace RazorPagesTutorial.Pages.Products
 {
@@ -44,7 +46,7 @@ namespace RazorPagesTutorial.Pages.Products
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == id);
+            Product = _context.getProduct(id.GetValueOrDefault());
 
             if (Product == null)
             {
@@ -68,13 +70,15 @@ namespace RazorPagesTutorial.Pages.Products
                 System.IO.File.Delete(removing);
             }
 
-            Product = await _context.Product.FindAsync(id);
+            SqlConnection sqlConnection = new SqlConnection(_context.connection);
+            SqlCommand cmd = new SqlCommand("dbo.delete_Product", sqlConnection);
 
-            if (Product != null)
-            {
-                _context.Product.Remove(Product);
-                await _context.SaveChangesAsync();
-            }
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = id.GetValueOrDefault();
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
 
             return RedirectToPage("./Index");
         }
