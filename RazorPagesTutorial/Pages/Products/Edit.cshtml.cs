@@ -83,7 +83,7 @@ namespace RazorPagesTutorial.Pages.Products
                 }
                 
             }
-
+             
             SqlConnection sqlConnection = new SqlConnection(_context.connection);
             SqlCommand cmd = new SqlCommand("dbo.edit_Product", sqlConnection);
             cmd.Parameters.Add("@p_id", SqlDbType.Int).Value = Product.P_ID;
