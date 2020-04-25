@@ -16,7 +16,7 @@ namespace RazorPagesTutorial.Pages.USERS
     {
         [BindProperty]
         public LoginUSER LOGIN_USER { get; set; }
-        public IList<USER> USERS { get; set; }
+        public List<USER> USERS { get; set; }
 
         public string Msg, Msg1, url;
         //public int id;
@@ -41,12 +41,12 @@ namespace RazorPagesTutorial.Pages.USERS
             //Msg = "in OnPostAsync()";
 
             //_context.LoginUSER.Add(USER);
-            USERS = await _context.USERS.ToListAsync();
+            USERS = _context.getUserList();
             /*if (!ModelState.IsValid)
             {
                 return Page();
             }*/
-            
+
             for (int i = 0; i < USERS.Count(); i++)
             {
                 //Msg1 = "In";
@@ -98,8 +98,6 @@ namespace RazorPagesTutorial.Pages.USERS
             //Msg1 = "outside foreach "+ USER.U_ID.ToString();
 
             return Page();
-
-            //USERS = await _context.USERS.ToListAsync();
             
         }
 

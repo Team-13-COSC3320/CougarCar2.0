@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace RazorPagesTutorial.Pages.USERS
 {
@@ -31,7 +32,7 @@ namespace RazorPagesTutorial.Pages.USERS
                 return NotFound();
             }
 
-            USERS = await _context.USERS.FirstOrDefaultAsync(m => m.U_ID == id);
+            USERS = _context.getUser(id.GetValueOrDefault());
 
             if (USERS == null)
             {
@@ -47,15 +48,19 @@ namespace RazorPagesTutorial.Pages.USERS
             {
                 return NotFound();
             }
+            USERS = _context.getUser(id.GetValueOrDefault());
 
-            USERS = await _context.USERS.FindAsync(id);
+            SqlConnection sqlConnection = new SqlConnection(_context.connection);
+            SqlCommand cmd = new SqlCommand("dbo.users_delete", sqlConnection);
 
-            if (USERS != null)
-            {
-                _context.USERS.Remove(USERS);
-                await _context.SaveChangesAsync();
-            }
+            cmd.Parameters.Add("@u_id", SqlDbType.Int).Value = USERS.U_ID;
+            cmd.Parameters.Add("@u_role", SqlDbType.Char).Value = USERS.U_Role;
+            cmd.Parameters.Add("@u_msg", SqlDbType.Char).Value = "";
+            cmd.CommandType = CommandType.StoredProcedure;
 
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
             return RedirectToPage("./Index");
         }
     }

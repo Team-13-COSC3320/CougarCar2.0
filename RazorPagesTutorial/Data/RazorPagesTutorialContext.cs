@@ -155,7 +155,6 @@ namespace RazorPagesTutorial.Data
             sqlConnection.Close();
             return U;
         }
-
         internal Review getReview(int id)
         {
             Review r = new Review();

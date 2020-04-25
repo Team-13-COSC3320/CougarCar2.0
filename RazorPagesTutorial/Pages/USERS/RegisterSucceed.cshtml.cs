@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
@@ -42,7 +41,7 @@ namespace RazorPagesTutorial.Pages.USERS
                 ViewData["UserRole"] = Role;
             }
 
-            USERS = await _context.USERS.FirstOrDefaultAsync(m => m.U_ID == id);
+            USERS = _context.getUser(id.GetValueOrDefault());
             Msg = USERS.U_ID.ToString();
             //url = "../Products/Products?id=" + USERS.U_ID;
             if (USERS == null)

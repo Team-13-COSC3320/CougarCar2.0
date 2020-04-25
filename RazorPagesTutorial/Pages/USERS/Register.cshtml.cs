@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace RazorPagesTutorial.Pages.USERS
 {
@@ -35,10 +37,28 @@ namespace RazorPagesTutorial.Pages.USERS
                 return Page();
             }
 
-            _context.USERS.Add(USERS);
-            await _context.SaveChangesAsync();
+            SqlConnection sqlConnection = new SqlConnection(_context.connection);
+            SqlCommand cmd = new SqlCommand("dbo.users_insert_register", sqlConnection);
 
-            url = "./RegisterSucceed?id=" + USERS.U_ID;
+            cmd.Parameters.Add("@u_id", SqlDbType.Int).Value = USERS.U_ID;
+            cmd.Parameters.Add("@u_pass", SqlDbType.Char).Value = USERS.U_Pass;
+            cmd.Parameters.Add("@u_fName", SqlDbType.Char).Value = USERS.U_FName;
+            cmd.Parameters.Add("@u_lName", SqlDbType.Char).Value = USERS.U_LName;
+            cmd.Parameters.Add("@u_address", SqlDbType.Char).Value = USERS.U_Address;
+            cmd.Parameters.Add("@u_country", SqlDbType.Char).Value = USERS.U_Country;
+            cmd.Parameters.Add("@u_zipcode", SqlDbType.Int).Value = USERS.U_Zipcode;
+            cmd.Parameters.Add("@u_phone", SqlDbType.Char).Value = USERS.U_Phone;
+            cmd.Parameters.Add("@u_email", SqlDbType.Char).Value = USERS.U_Email;
+            cmd.Parameters.Add("@u_msg", SqlDbType.Char).Value = "";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
+
+            List<USER> users = _context.getUserList();
+
+            url = "./RegisterSucceed?id=" + users[users.Count() - 1].U_ID;
             return Redirect(url);
         }
     }

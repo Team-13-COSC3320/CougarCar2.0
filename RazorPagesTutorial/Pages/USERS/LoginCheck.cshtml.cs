@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 using RazorPagesTutorial.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +63,7 @@ namespace RazorPagesTutorial.Pages.USERS
                     Msg = "";
                 }
             }
-            USER = await _context.USERS.FirstOrDefaultAsync(m => m.U_ID == ID);
+            USER = _context.getUser(ID);
             if (!string.IsNullOrWhiteSpace(Password) && !(USER == null))
             {
                 if (USER.U_Pass.Contains(Password))

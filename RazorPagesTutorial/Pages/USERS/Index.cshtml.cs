@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
@@ -39,7 +38,7 @@ namespace RazorPagesTutorial.Pages.USERS
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            USERS = await _context.USERS.ToListAsync();
+            USERS = _context.getUserList();
 
             //CurrentUser = await _context.LoginUSER.FirstOrDefaultAsync(m => m.U_ID == id);
             for (int i = 0; i < USERS.Count(); i++)

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace RazorPagesTutorial.Pages.USERS
 {
@@ -44,7 +45,7 @@ namespace RazorPagesTutorial.Pages.USERS
                 ViewData["UserRole"] = Role;
             }
 
-            USERS = await _context.USERS.FirstOrDefaultAsync(m => m.U_ID == id);
+            USERS = _context.getUser(id.GetValueOrDefault());
 
             if (USERS == null)
             {
@@ -74,44 +75,26 @@ namespace RazorPagesTutorial.Pages.USERS
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
+            SqlConnection sqlConnection = new SqlConnection(_context.connection);
+            SqlCommand cmd = new SqlCommand("dbo.users_edit_self", sqlConnection);
 
-            /*
-            if (USERS.U_Role.Equals("Master"))
-            {
-                return RedirectToPage("../USERS/Index");
-            }*/
-            //if (!ModelState.IsValid)
-            //{
-              //  return Page();
-            //}
-            _context.Attach(USERS).State = EntityState.Modified;
-            USERS.U_Role = ViewData["UserRole"].ToString();
+            cmd.Parameters.Add("@u_id", SqlDbType.Int).Value = USERS.U_ID;
+            cmd.Parameters.Add("@u_pass", SqlDbType.Char).Value = USERS.U_Pass;
+            cmd.Parameters.Add("@u_fName", SqlDbType.Char).Value = USERS.U_FName;
+            cmd.Parameters.Add("@u_lName", SqlDbType.Char).Value = USERS.U_LName;
+            cmd.Parameters.Add("@u_address", SqlDbType.Char).Value = USERS.U_Address;
+            cmd.Parameters.Add("@u_country", SqlDbType.Char).Value = USERS.U_Country;
+            cmd.Parameters.Add("@u_zipcode", SqlDbType.Int).Value = USERS.U_Zipcode;
+            cmd.Parameters.Add("@u_phone", SqlDbType.Char).Value = USERS.U_Phone;
+            cmd.Parameters.Add("@u_email", SqlDbType.Char).Value = USERS.U_Email;
+            cmd.Parameters.Add("@u_msg", SqlDbType.Char).Value = "";
+            cmd.CommandType = CommandType.StoredProcedure;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-                Msg = "Save succeed";
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!USERSExists(USERS.U_ID))
-                {
-                    return NotFound();
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
 
-
-                }
-                else
-                {
-                    throw;
-                }
-                //Msg = "Error";
-            }
             return Page();
-        }
-
-        private bool USERSExists(int id)
-        {
-            return _context.USERS.Any(e => e.U_ID == id);
         }
     }
 }
