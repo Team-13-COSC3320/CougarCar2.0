@@ -85,8 +85,10 @@ namespace RazorPagesTutorial
             {
                 return NotFound();
             }
-            
+
             Product = _context.getProduct(id.GetValueOrDefault());
+            
+
             var rid = Review.R_ID;
             var pid = Product.P_ID;
             var content = Review.R_Content;

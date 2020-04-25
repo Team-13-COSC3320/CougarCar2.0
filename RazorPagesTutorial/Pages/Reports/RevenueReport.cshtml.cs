@@ -66,7 +66,24 @@ namespace RazorPagesTutorial
 
         public async Task OnPostAsync()
         {
-            date = date = DateTime.Parse(Request.Form["dateSelected"]);
+            if (HttpContext.Session.Get("Id") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Id");
+                string ID = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["Userid"] = ID;
+                //Console.Out.Write(ViewData["Userid"]);
+            }
+            if (HttpContext.Session.Get("Role") != null)
+            {
+                byte[] str = HttpContext.Session.Get("Role");
+                string Role = Encoding.UTF8.GetString(str, 0, str.Length);
+                ViewData["UserRole"] = Role;
+
+            }
+            if (Request.Form["dateSelected"].ToString().Length == 0)
+            {
+                date = DateTime.Parse("04-01-2020");
+            }else date = DateTime.Parse(Request.Form["dateSelected"]);
             if (date == DateTime.MinValue)
             {
                 date = DateTime.Parse("04-01-2020");

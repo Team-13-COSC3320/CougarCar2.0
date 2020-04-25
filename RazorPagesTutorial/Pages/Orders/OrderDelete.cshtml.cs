@@ -69,7 +69,7 @@ namespace RazorPagesTutorial.Pages.Orders
                 SqlConnection sqlConnection = new SqlConnection(_context.connection);
 
                 SqlCommand cmd = new SqlCommand("dbo.delete_Order", sqlConnection);
-                cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = id.GetValueOrDefault(); ;
                 cmd.Parameters.Add("@p_id", SqlDbType.Int).Value = P.P_ID;
                 cmd.Parameters.Add("@p_amount", SqlDbType.Int).Value = P.P_Amount + 1;
                 cmd.CommandType = CommandType.StoredProcedure;

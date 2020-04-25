@@ -73,7 +73,6 @@ namespace RazorPagesTutorial.Data
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
             sqlConnection.Open();
-            Console.SetOut(new DebugTextWriter());
             using (SqlDataReader rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
@@ -99,7 +98,6 @@ namespace RazorPagesTutorial.Data
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
             sqlConnection.Open();
-            Console.SetOut(new DebugTextWriter());
             using (SqlDataReader rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
@@ -127,7 +125,6 @@ namespace RazorPagesTutorial.Data
             cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
             sqlConnection.Open();
-            Console.SetOut(new DebugTextWriter());
             using (SqlDataReader rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
@@ -181,7 +178,6 @@ namespace RazorPagesTutorial.Data
             SqlCommand cmd = new SqlCommand("dbo.get_all_Product", sqlConnection);
 
             sqlConnection.Open();
-            Console.SetOut(new DebugTextWriter());
             using (SqlDataReader rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
