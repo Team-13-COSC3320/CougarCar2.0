@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
@@ -21,9 +20,9 @@ namespace RazorPagesTutorial
         private readonly RazorPagesTutorialContext _context;
 
 
-        public RevenueReportModel(RazorPagesTutorialContext context)
+        public RevenueReportModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
         [BindProperty]
         public DateTime date { get; set; }
@@ -68,10 +67,11 @@ namespace RazorPagesTutorial
         public async Task OnPostAsync()
         {
             date = date = DateTime.Parse(Request.Form["dateSelected"]);
-            if(date == DateTime.MinValue)
+            if (date == DateTime.MinValue)
             {
                 date = DateTime.Parse("04-01-2020");
             }
+            
 
             Console.Out.Write(date);
 

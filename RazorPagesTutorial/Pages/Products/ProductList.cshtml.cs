@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesTutorial.Models;
+using RazorPagesTutorial.Data;
 using Microsoft.AspNetCore.Http;
 using System.Text;
 
@@ -13,11 +14,11 @@ namespace RazorPagesTutorial
     public class ProductListModel : PageModel
     {
 
-        private readonly RazorPagesTutorial.Data.RazorPagesTutorialContext _context;
+        private readonly RazorPagesTutorialContext _context;
 
-        public ProductListModel(RazorPagesTutorial.Data.RazorPagesTutorialContext context)
+        public ProductListModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public IList<Product> Product { get; set; }

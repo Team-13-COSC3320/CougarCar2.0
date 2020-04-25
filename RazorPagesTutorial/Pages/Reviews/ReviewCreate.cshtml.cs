@@ -18,9 +18,9 @@ namespace RazorPagesTutorial
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public ReviewCreateModel(RazorPagesTutorialContext context)
+        public ReviewCreateModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public USER CurrentUser { get; set; }

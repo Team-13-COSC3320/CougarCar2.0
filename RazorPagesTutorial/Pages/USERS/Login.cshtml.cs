@@ -23,9 +23,9 @@ namespace RazorPagesTutorial.Pages.USERS
 
         private readonly RazorPagesTutorialContext _context;
 
-        public LoginModel(RazorPagesTutorialContext context)
+        public LoginModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
 
         }
         /*

@@ -16,9 +16,9 @@ namespace RazorPagesTutorial.Pages.USERS
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public EditModel2(RazorPagesTutorialContext context)
+        public EditModel2()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         [BindProperty]

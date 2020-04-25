@@ -19,9 +19,9 @@ namespace RazorPagesTutorial
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public ReviewDeleteModel(RazorPagesTutorialContext context)
+        public ReviewDeleteModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext(); ;
         }
 
         public Review Review{ get; set; }

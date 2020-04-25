@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesTutorial.Models;
+using RazorPagesTutorial.Data;
 using Microsoft.AspNetCore.Http;
 using System.Text;
 
@@ -12,11 +13,11 @@ namespace RazorPagesTutorial
 {
     public class OrderTableModel : PageModel
     {
-        private readonly RazorPagesTutorial.Data.RazorPagesTutorialContext _context;
+        private readonly RazorPagesTutorialContext _context;
 
-        public OrderTableModel(RazorPagesTutorial.Data.RazorPagesTutorialContext context)
+        public OrderTableModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public IList<Orders> Orders { get; set; }

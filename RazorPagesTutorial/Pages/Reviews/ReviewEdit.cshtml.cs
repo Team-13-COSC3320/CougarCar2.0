@@ -18,9 +18,9 @@ namespace RazorPagesTutorial
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public ReviewEditModel(RazorPagesTutorialContext context)
+        public ReviewEditModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         [BindProperty]

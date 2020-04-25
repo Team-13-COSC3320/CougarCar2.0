@@ -18,9 +18,9 @@ namespace RazorPagesTutorial.Pages.Orders
     public class OrderDeleteModel : PageModel
     {
         private readonly RazorPagesTutorialContext _context;
-        public OrderDeleteModel(RazorPagesTutorialContext context)
+        public OrderDeleteModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
 

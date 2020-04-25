@@ -15,9 +15,9 @@ namespace RazorPagesTutorial.Pages.USERS
     {
         private readonly RazorPagesTutorialContext _context;
         public string url;
-        public RegisterModel(RazorPagesTutorialContext context)
+        public RegisterModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public IActionResult OnGet()

@@ -15,9 +15,9 @@ namespace RazorPagesTutorial.Pages.Products
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public IndexModel(RazorPagesTutorialContext context)
+        public IndexModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public IList<Product> Product { get;set; }

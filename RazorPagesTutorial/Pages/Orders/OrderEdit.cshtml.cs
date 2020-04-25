@@ -21,9 +21,9 @@ namespace RazorPagesTutorial
 
         private readonly RazorPagesTutorialContext _context;
 
-        public OrderEditModel(RazorPagesTutorialContext context)
+        public OrderEditModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public async Task<IActionResult> OnGetAsync(int? id)

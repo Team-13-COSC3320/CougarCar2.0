@@ -18,9 +18,9 @@ namespace RazorPagesTutorial.Pages.USERS
         public string Password;
         public string Msg;
 
-        public LoginCheckModel(RazorPagesTutorialContext context)
+        public LoginCheckModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public IList<USER> USERS  { get; set; }

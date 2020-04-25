@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
@@ -20,9 +19,9 @@ namespace RazorPagesTutorial
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public ReviewAVGReportModel(RazorPagesTutorialContext context)
+        public ReviewAVGReportModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
 

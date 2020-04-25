@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using LibraryData.Models;
 using RazorPagesTutorial.Models;
 using System.Data;
@@ -10,27 +9,20 @@ using System.Data.SqlClient;
 
 namespace RazorPagesTutorial.Data
 {
-    public class RazorPagesTutorialContext : DbContext
+    public class RazorPagesTutorialContext
     {
-        public RazorPagesTutorialContext(DbContextOptions<RazorPagesTutorialContext> options)
-            : base(options)
-        {
-        }
-
         public string connection = "Data Source=sql5053.site4now.net;User ID=DB_A573D4_team13_admin;Password=Team13shop;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public DbSet<RazorPagesTutorial.Models.Product> Product { get; set; }
-        public DbSet<RazorPagesTutorial.Models.Orders> Orders { get; set; }
-        public DbSet<RazorPagesTutorial.Models.USER> USERS { get; set; }
-        public DbSet<RazorPagesTutorial.Models.LoginUSER> LoginUSER { get; set; }
-        public DbSet<Review> Review {get; set;}
+        public List<Product> Product { get; set; }
+        public List<Orders> Orders { get; set; }
+        public List<USER> USERS { get; set; }
+        public List<LoginUSER> LoginUSER { get; set; }
+        public List<Review> Review { get; set; }
         public int Userid { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Product>().ToTable("PRODUCTS");
-            modelBuilder.Entity<Review>().ToTable("REVIEW");
-            modelBuilder.Entity<Orders>().ToTable("ORDERS");
-            modelBuilder.Entity<USER>().ToTable("USERS");
+        public RazorPagesTutorialContext(){
+            Product = getProductList();
+            Orders = getOrderList();
+            USERS = getUserList();
+            Review = getReviewList();
         }
 
         internal List<Review> GetReviewsOnProduct(int? id)

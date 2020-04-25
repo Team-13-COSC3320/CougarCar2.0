@@ -18,9 +18,9 @@ namespace RazorPagesTutorial.Pages.USERS
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public CreateModel2(RazorPagesTutorialContext context)
+        public CreateModel2()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public IActionResult OnGet()

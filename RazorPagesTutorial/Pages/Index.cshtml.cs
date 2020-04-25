@@ -41,9 +41,9 @@ namespace RazorPagesTutorial
             current_image = imagefiles[int.Parse(index)];
             validReviews = _context.GetReviewsOnProduct(product_ids[int.Parse(index)]);
         }
-        public IndexModel(RazorPagesTutorialContext context)
+        public IndexModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
         public List<Review> validReviews { get; private set; }
 

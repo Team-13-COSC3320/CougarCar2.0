@@ -18,9 +18,9 @@ namespace RazorPagesTutorial.Pages.Products
     {
         private readonly RazorPagesTutorialContext _context;
         private IWebHostEnvironment _environment;
-        public DeleteModel(RazorPagesTutorialContext context, IWebHostEnvironment environment)
+        public DeleteModel( IWebHostEnvironment environment)
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
             _environment = environment;
         }
 

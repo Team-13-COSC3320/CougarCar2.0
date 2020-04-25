@@ -7,17 +7,18 @@ using LibraryData.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorPagesTutorial.Data;
 
 namespace RazorPagesTutorial
 {
     public class ReviewCustomerTableModel : PageModel
     {
-        private readonly RazorPagesTutorial.Data.RazorPagesTutorialContext _context;
+        private readonly RazorPagesTutorialContext _context;
         public IList<Review> Reviews { get; set; }
 
-        public ReviewCustomerTableModel(RazorPagesTutorial.Data.RazorPagesTutorialContext context)
+        public ReviewCustomerTableModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public async Task OnGetAsync()

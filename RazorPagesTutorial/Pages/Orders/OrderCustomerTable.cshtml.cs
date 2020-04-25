@@ -8,17 +8,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesTutorial.Models;
+using RazorPagesTutorial.Data;
 
 namespace RazorPagesTutorial
 {
     public class OrderCustomerTableModel : PageModel
     {
-        private readonly RazorPagesTutorial.Data.RazorPagesTutorialContext _context;
+        private readonly RazorPagesTutorialContext _context;
         public IList<Orders> Orders { get; set; }
 
-        public OrderCustomerTableModel(RazorPagesTutorial.Data.RazorPagesTutorialContext context)
+        public OrderCustomerTableModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public async Task OnGetAsync()

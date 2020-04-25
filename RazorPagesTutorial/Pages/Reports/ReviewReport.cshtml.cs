@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
 using LibraryData.Models;
@@ -18,9 +17,9 @@ namespace RazorPagesTutorial.Pages.Reports
         private readonly RazorPagesTutorialContext _context;
 
 
-        public ReviewReportModel(RazorPagesTutorialContext context)
+        public ReviewReportModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public int star, currentUserID, count;
@@ -47,9 +46,9 @@ namespace RazorPagesTutorial.Pages.Reports
                 ViewData["UserRole"] = Role;
 
             }
-            USERS = await _context.USERS.ToListAsync();
-            REVIEW = await _context.Review.ToListAsync();
-            PRODUCTS = await _context.Product.ToListAsync();
+            USERS = _context.getUserList();
+            REVIEW = _context.getReviewList();
+            PRODUCTS = _context.getProductList();
             count = REVIEW.Count();
             for (int i = 0; i < USERS.Count(); i++)
             {
@@ -79,9 +78,9 @@ namespace RazorPagesTutorial.Pages.Reports
                 ViewData["UserRole"] = Role;
 
             }
-            USERS = await _context.USERS.ToListAsync();
-            REVIEW = await _context.Review.ToListAsync();
-            PRODUCTS = await _context.Product.ToListAsync();
+            USERS = _context.getUserList();
+            REVIEW = _context.getReviewList();
+            PRODUCTS = _context.getProductList();
             star = int.Parse( Request.Form["starSelected"]);
             count = 0;
             foreach (Review i in REVIEW)

@@ -17,9 +17,9 @@ namespace RazorPagesTutorial
         RazorPagesTutorialContext _context { get; set; }
         public IList<Review> Review { get; private set; }
 
-        public ReviewTableModel(RazorPagesTutorialContext context)
+        public ReviewTableModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
         public async Task OnGetAsync()
         {

@@ -17,9 +17,9 @@ namespace RazorPagesTutorial.Pages.USERS
         
         public string url,Msg;
         public USER USERS { get; set; }
-        public RegisterSucceedModel(RazorPagesTutorialContext context)
+        public RegisterSucceedModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public async Task<IActionResult> OnGetAsync(int? id)

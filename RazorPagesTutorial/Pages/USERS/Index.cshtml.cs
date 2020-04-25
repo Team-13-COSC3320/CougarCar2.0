@@ -15,9 +15,9 @@ namespace RazorPagesTutorial.Pages.USERS
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public IndexModel2(RazorPagesTutorialContext context)
+        public IndexModel2()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         public IList<USER> USERS { get; set; }

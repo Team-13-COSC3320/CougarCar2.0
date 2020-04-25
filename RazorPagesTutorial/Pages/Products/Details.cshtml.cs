@@ -17,9 +17,9 @@ namespace RazorPagesTutorial.Pages.Products
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public DetailsModel(RazorPagesTutorialContext context)
+        public DetailsModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
 

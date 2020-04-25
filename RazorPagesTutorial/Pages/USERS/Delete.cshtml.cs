@@ -17,9 +17,9 @@ namespace RazorPagesTutorial.Pages.USERS
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public DeleteModel2(RazorPagesTutorialContext context)
+        public DeleteModel2()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         [BindProperty]

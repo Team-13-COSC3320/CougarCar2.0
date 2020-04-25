@@ -17,9 +17,9 @@ namespace RazorPagesTutorial.Pages.USERS
     {
         private readonly RazorPagesTutorialContext _context;
 
-        public CustomerAccountMmModel(RazorPagesTutorialContext context)
+        public CustomerAccountMmModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         [BindProperty]

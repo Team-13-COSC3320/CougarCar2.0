@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesTutorial.Models;
+using RazorPagesTutorial.Data;
 using Microsoft.AspNetCore.Http;
 using System.Text;
 using System.Data.SqlClient;
@@ -14,11 +15,11 @@ namespace RazorPagesTutorial
 {
     public class OrderCreateModel : PageModel
     {
-        private readonly RazorPagesTutorial.Data.RazorPagesTutorialContext _context;
+        private readonly RazorPagesTutorialContext _context;
 
-        public OrderCreateModel(RazorPagesTutorial.Data.RazorPagesTutorialContext context)
+        public OrderCreateModel()
         {
-            _context = context;
+            _context = new RazorPagesTutorialContext();
         }
 
         [BindProperty]
