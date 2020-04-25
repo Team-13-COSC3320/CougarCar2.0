@@ -46,7 +46,6 @@ namespace RazorPagesTutorial.Data
 
             return validReviews;
         }
-
         internal List<Orders> GetOrderFromUser(int? id)
         {
             List<Orders> validOrders = new List<Orders>();
@@ -59,7 +58,6 @@ namespace RazorPagesTutorial.Data
             }
             return validOrders;
         }
-
         internal List<Review> GetReviewsFromUser(int? id)
         {
             List<Review> validreviews = new List<Review>();
@@ -72,7 +70,6 @@ namespace RazorPagesTutorial.Data
             }
             return validreviews;
         }
-
         internal Orders getOrder(int id)
         {
             Orders Or = new Orders();
@@ -157,6 +154,32 @@ namespace RazorPagesTutorial.Data
             }
             sqlConnection.Close();
             return U;
+        }
+
+        internal Review getReview(int id)
+        {
+            Review r = new Review();
+
+            SqlConnection sqlConnection = new SqlConnection(connection);
+            SqlCommand cmd = new SqlCommand("dbo.get_Review", sqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+            sqlConnection.Open();
+            using (SqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    r.R_ID = rdr.GetInt32(0);
+                    r.R_UID = rdr.GetInt32(1);
+                    r.R_Title = rdr.GetString(2);
+                    r.R_Content = rdr.GetString(3);
+                    r.R_Star = rdr.GetInt32(4);
+                    r.ID = rdr.GetInt32(5);
+                }
+            }
+            sqlConnection.Close();
+            return r;
         }
         internal List<Product> getProductList()
         {

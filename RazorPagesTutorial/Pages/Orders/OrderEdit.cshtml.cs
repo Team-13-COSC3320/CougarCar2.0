@@ -7,7 +7,6 @@ using LibraryData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 using RazorPagesTutorial.Data;
 using Microsoft.AspNetCore.Http;

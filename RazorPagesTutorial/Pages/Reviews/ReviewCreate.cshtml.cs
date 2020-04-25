@@ -7,7 +7,6 @@ using LibraryData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 using RazorPagesTutorial.Data;
 using Microsoft.AspNetCore.Http;
@@ -57,7 +56,7 @@ namespace RazorPagesTutorial
             }
 
             //Console.Out.Write(ViewData["Userid"]);
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == id);
+            Product = _context.getProduct(id.GetValueOrDefault());
 
             if (Product == null)
             {
@@ -87,7 +86,7 @@ namespace RazorPagesTutorial
                 return NotFound();
             }
             
-            Product = await _context.Product.FindAsync(id);
+            Product = _context.getProduct(id.GetValueOrDefault());
             var rid = Review.R_ID;
             var pid = Product.P_ID;
             var content = Review.R_Content;
@@ -124,9 +123,6 @@ namespace RazorPagesTutorial
             sqlConnection.Open();
             cmd.ExecuteNonQuery();
             sqlConnection.Close();
-
-
-            await _context.SaveChangesAsync();
             
             //If admin do this
             if(ViewData["UserRole"].ToString().Contains("Master") || ViewData["UserRole"].ToString().Contains("Admin"))

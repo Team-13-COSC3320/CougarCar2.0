@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using LibraryData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using RazorPagesTutorial.Data;
 using System.Text;

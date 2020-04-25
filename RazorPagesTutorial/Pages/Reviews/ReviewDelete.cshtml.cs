@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using LibraryData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Data;
 using RazorPagesTutorial.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 
 namespace RazorPagesTutorial
@@ -45,8 +46,8 @@ namespace RazorPagesTutorial
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Review = await _context.Review.FirstOrDefaultAsync(m => m.R_ID == id);
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == Review.ID);
+            Review = _context.getReview(id.GetValueOrDefault());
+            Product = _context.getProduct(Review.ID);
             if (Review == null)
             {
                 return NotFound();
@@ -61,13 +62,15 @@ namespace RazorPagesTutorial
                 return NotFound();
             }
 
-            Review = await _context.Review.FindAsync(id);
+            SqlConnection sqlConnection = new SqlConnection(_context.connection);
+            SqlCommand cmd = new SqlCommand("dbo.delete_Review", sqlConnection);
 
-            if (Review != null)
-            {
-                _context.Review.Remove(Review);
-                await _context.SaveChangesAsync();
-            }
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = id.GetValueOrDefault();
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
 
             //If admin do this
             if ((String)ViewData["UserRole"] == "Admin")

@@ -7,7 +7,6 @@ using LibraryData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 using RazorPagesTutorial.Data;
 using Microsoft.AspNetCore.Http;
@@ -47,8 +46,8 @@ namespace RazorPagesTutorial
                 string Role = Encoding.UTF8.GetString(str, 0, str.Length);
                 ViewData["UserRole"] = Role;
             }
-            Review = await _context.Review.FirstOrDefaultAsync(m => m.R_ID == id);
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.P_ID == Review.ID);
+            Review = _context.getReview(id.GetValueOrDefault());
+            Product = _context.getProduct(Review.ID);
             
             if (Review == null)
             {
@@ -102,7 +101,7 @@ namespace RazorPagesTutorial
             var ruid = Review.R_UID;
             var rid = Review.R_ID;
             //string userid = ViewData["Userid"].ToString(); //null
-            Console.Out.Write(ViewData["Userid"]);
+
             SqlCommand cmd = new SqlCommand(query, sqlConnection);
             cmd.Parameters.Add("@R_TITLE", SqlDbType.Char).Value = title;
             cmd.Parameters.Add("@R_Content", SqlDbType.Char).Value = content;
@@ -118,25 +117,7 @@ namespace RazorPagesTutorial
             sqlConnection.Open();
             cmd.ExecuteNonQuery();
             sqlConnection.Close();
-            Review = await _context.Review.FirstOrDefaultAsync(m => m.R_ID == id);
-            //_context.Attach(Review).State = EntityState.Modified;
-
-            try
-            {
-                Console.Out.Write(Review.R_ID);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReviewExists(Review.R_ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+           
             //If admin do this
             if (ViewData["UserRole"].ToString().Contains("Master") || ViewData["UserRole"].ToString().Contains("Admin"))
             {
@@ -146,11 +127,6 @@ namespace RazorPagesTutorial
             {
                 return RedirectToPage("/Products/ProductList");
             }
-        }
-
-        private bool ReviewExists(int id)
-        {
-            return _context.Review.Any(e => e.R_ID == id);
         }
 
     }
